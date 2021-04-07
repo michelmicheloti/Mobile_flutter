@@ -1,16 +1,15 @@
-# Agenda para Psicólogo
+# CP110 - Desenvolvimento de Aplicações Mobile
+## AC1 - Avaliação Continuada 1
 
-A new Flutter project.
+- Michel Micheloti							181003
+- Paola Rodrigues Lopes        	180115
 
-## Getting Started
+### Agenda Para Psicólogo
 
-This project is a starting point for a Flutter application.
+Nosso projeto está sendo desenvolvido em Flutter, ele foi elaborado com o objetivo de auxiliar na gerência da agenda dos atendimentos realizados mensalmente em consultórios. O aplicativo conta com cadastro de pacientes, cadastros de clínicas e uma agenda que permite a visualização diária, mensal e semanal das consultas agendas. Além disso, estamos planejando desenvolver o módulo financeiro para o controle dos gastos/ganhos mensais dos atendimentos.
 
-A few resources to get you started if this is your first Flutter project:
+### [Mockup](https://www.figma.com/proto/byqLRNwWAEgRcJRscGzJYY/Untitled?node-id=32%3A104&scaling=scale-down)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<h4 align="center"> 
+	🚧  Flutter ... Em construção...  🚧
+</h4>
