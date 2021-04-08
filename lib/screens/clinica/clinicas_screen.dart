@@ -11,6 +11,7 @@ class ClinicasScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as HomePageIcons;
 
     final mediaQuery = MediaQuery.of(context);
+    
     final PreferredSizeWidget appBar = AppBar(
       title: Text(homePageIcons.title),
     );

@@ -42,61 +42,15 @@ class AgendaDiariaScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 1,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          'HORA',
-                        ),
+                      HoraContainer(),
+                      NomePacienteContainer(),
+                      Buttons(
+                        icon: Icons.cancel,
+                        color: Colors.red.shade300,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 1,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          'Nome Paciente',
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                              padding: EdgeInsets.all(15),
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 1,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Icon(
-                                Icons.cancel,
-                                color: Colors.red.shade300,
-                              )),
-                          Container(
-                              padding: EdgeInsets.all(15),
-                              margin: EdgeInsets.symmetric(
-                                horizontal: 1,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Icon(
-                                Icons.check_circle,
-                                color: Colors.green.shade300,
-                              )),
-                        ],
+                      Buttons(
+                        icon: Icons.check_circle,
+                        color: Colors.green.shade300,
                       )
                     ],
                   ),
@@ -105,6 +59,83 @@ class AgendaDiariaScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Buttons extends StatelessWidget {
+  final IconData icon;
+  final Color color;
+
+  const Buttons({
+    Key? key,
+    required this.icon,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.all(12),
+        margin: EdgeInsets.symmetric(
+          horizontal: 1,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Icon(
+          icon,
+          color: color,
+        ));
+  }
+}
+
+class NomePacienteContainer extends StatelessWidget {
+  const NomePacienteContainer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Container(
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(
+          horizontal: 1,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Text(
+          'Nome Paciente',
+        ),
+      ),
+    );
+  }
+}
+
+class HoraContainer extends StatelessWidget {
+  const HoraContainer({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.symmetric(
+        horizontal: 1,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Text(
+        'HORA',
       ),
     );
   }

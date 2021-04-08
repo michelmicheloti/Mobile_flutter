@@ -47,8 +47,14 @@ class MyButton extends StatelessWidget {
       child: Text(
         text,
       ),
-      style: ButtonStyle(
+      style: ButtonStyle(        
         backgroundColor: color,
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+        ),
+        elevation:  MaterialStateProperty.all<double>(5),
       ),
     );
   }

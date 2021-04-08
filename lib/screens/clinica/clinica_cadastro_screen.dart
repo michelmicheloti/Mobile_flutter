@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 class ClinicaCadastroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
+    final PreferredSizeWidget appBar = AppBar(
+      title: Text(""),
+    );
+
+    final availabelHeight = mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top;
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -20,35 +30,41 @@ class ClinicaCadastroScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              MyRow(
-                title: "Início dos Atendimentos",
-                hint: "12:00",
-                textInputType: TextInputType.datetime,
-              ),
-              MyRow(
-                title: "Fim dos Atendimentos",
-                hint: "18:00",
-                textInputType: TextInputType.datetime,
-              ),
-              MyRow(
-                title: "Minutos de Atendimentos",
-                hint: "30",
-                textInputType: TextInputType.datetime,
-              ),
-              MyRow(
-                title: "Valor do Atendimento",
-                hint: "R\$ 50,00",
-                textInputType: TextInputType.number,
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Row(
+        child: Container(
+          height: availabelHeight * 1,
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 24,
+              left: 16,
+              right: 16,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyRow(
+                  title: "Início dos Atendimentos",
+                  hint: "12:00",
+                  textInputType: TextInputType.datetime,
+                ),
+                MyRow(
+                  title: "Fim dos Atendimentos",
+                  hint: "18:00",
+                  textInputType: TextInputType.datetime,
+                ),
+                MyRow(
+                  title: "Minutos de Atendimentos",
+                  hint: "30",
+                  textInputType: TextInputType.datetime,
+                ),
+                MyRow(
+                  title: "Valor do Atendimento",
+                  hint: "R\$ 50,00",
+                  textInputType: TextInputType.number,
+                ),
+                Column(
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
@@ -60,22 +76,22 @@ class ClinicaCadastroScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DiasDaSemana(text: "SEG"),
-                      DiasDaSemana(text: "TER"),
-                      DiasDaSemana(text: "QUA"),
-                      DiasDaSemana(text: "QUI"),
-                      DiasDaSemana(text: "SEX"),
-                      DiasDaSemana(text: "SAB"),
-                    ],
-                  ),
-                  ButtonsCancelSave()
-                ],
-              )
-            ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        DiasDaSemana(text: "SEG"),
+                        DiasDaSemana(text: "TER"),
+                        DiasDaSemana(text: "QUA"),
+                        DiasDaSemana(text: "QUI"),
+                        DiasDaSemana(text: "SEX"),
+                        DiasDaSemana(text: "SAB"),
+                      ],
+                    ),
+                    ButtonsCancelSave(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

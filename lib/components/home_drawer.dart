@@ -46,25 +46,25 @@ class HomeDrawer extends StatelessWidget {
           _createItem(
             'Agenda Diária',
             () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.AGENDA_DIARIA,              
+              AppRoute.HOME,
             ),
           ),
           _createItem(
             'Clínicas',
             () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.CLINICAS,              
+              AppRoute.HOME,
             ),
           ),
           _createItem(
             'Pacientes',
             () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.PACIENTES,              
+              AppRoute.HOME,
             ),
           ),
           _createItem(
             'Rendimentos',
             () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.RENDIMENTOS,              
+              AppRoute.HOME,
             ),
           ),
         ],
