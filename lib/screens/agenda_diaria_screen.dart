@@ -42,8 +42,8 @@ class AgendaDiariaScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      HoraContainer(),
-                      NomePacienteContainer(),
+                      Hora(),
+                      NomePaciente(),
                       Buttons(
                         icon: Icons.cancel,
                         color: Colors.red.shade300,
@@ -76,24 +76,30 @@ class Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(12),
-        margin: EdgeInsets.symmetric(
-          horizontal: 1,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Icon(
-          icon,
-          color: color,
-        ));
+    return Material(
+      child: InkWell(
+        splashColor: Theme.of(context).primaryColor,
+        onTap: () {},
+        child: Container(
+            padding: EdgeInsets.all(12),
+            margin: EdgeInsets.symmetric(
+              horizontal: 1,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Icon(
+              icon,
+              color: color,
+            )),
+      ),
+    );
   }
 }
 
-class NomePacienteContainer extends StatelessWidget {
-  const NomePacienteContainer({
+class NomePaciente extends StatelessWidget {
+  const NomePaciente({
     Key? key,
   }) : super(key: key);
 
@@ -102,6 +108,7 @@ class NomePacienteContainer extends StatelessWidget {
     return Flexible(
       fit: FlexFit.tight,
       child: Container(
+        alignment: Alignment.center,
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.symmetric(
           horizontal: 1,
@@ -118,8 +125,8 @@ class NomePacienteContainer extends StatelessWidget {
   }
 }
 
-class HoraContainer extends StatelessWidget {
-  const HoraContainer({
+class Hora extends StatelessWidget {
+  const Hora({
     Key? key,
   }) : super(key: key);
 

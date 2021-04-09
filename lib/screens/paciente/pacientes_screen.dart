@@ -18,6 +18,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
         ModalRoute.of(context)?.settings.arguments as HomePageIcons;
 
     final mediaQuery = MediaQuery.of(context);
+
     final PreferredSizeWidget appBar = AppBar(
       title: Text(homePageIcons.title),
     );
@@ -33,10 +34,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
           children: [
             Text(
               homePageIcons.title,
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -44,27 +42,9 @@ class _PacientesScreenState extends State<PacientesScreen> {
       body: Center(
         child: Column(
           children: [
-            DropdownButton<String>(
-              value: dropdownValue,
-              icon: const Icon(Icons.arrow_downward),
-              iconSize: 15,
-              elevation: 16,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                });
-              },
-              items: ['One', 'Two', 'Free', 'Four']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+            Container(
+              width: mediaQuery.size.width * 0.98,
+              child: DropDown(),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -83,7 +63,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
-                              width: 300,
+                              width: mediaQuery.size.width * 0.9,
                               padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -106,11 +86,79 @@ class _PacientesScreenState extends State<PacientesScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO),
+        onPressed: () =>
+            Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO),
         backgroundColor: Colors.blue.shade500,
         child: Icon(
           Icons.add,
           size: 35,
+        ),
+      ),
+    );
+  }
+}
+
+class DropDown extends StatefulWidget {
+  @override
+  _DropDownState createState() => _DropDownState();
+}
+
+class _DropDownState extends State<DropDown> {
+  String? valueChoose;
+  List listItem = [
+    "Clínica_1",
+    "Clínica_2",
+    "Clínica_3",
+    "Clínica_4",
+    "Clínica_5",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+          ),
+          child: DropdownButton(
+            hint: Container(
+              child: Text("Selecione uma Clínica"),
+              alignment: Alignment.center,
+            ),
+            dropdownColor: Colors.white,
+            underline: SizedBox(),
+            icon: Icon(Icons.arrow_drop_down),
+            iconSize: 24,
+            isExpanded: true,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+            ),
+            value: valueChoose,
+            onChanged: (newValue) {
+              setState(() {
+                valueChoose = newValue as String;
+              });
+            },
+            items: listItem.map(
+              (valueItem) {
+                return DropdownMenuItem(
+                  value: valueItem,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      valueItem,
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+          ),
         ),
       ),
     );
