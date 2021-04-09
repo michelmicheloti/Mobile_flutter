@@ -111,7 +111,11 @@ class DiasDaSemana extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
         child: InkWell(
+          splashColor: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(15),
           onTap: () {},
           child: Container(
             child: Text(
@@ -123,10 +127,6 @@ class DiasDaSemana extends StatelessWidget {
             alignment: Alignment.center,
             width: 45,
             height: 45,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-            ),
           ),
         ),
       ),

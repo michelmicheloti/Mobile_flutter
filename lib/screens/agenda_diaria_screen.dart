@@ -48,6 +48,9 @@ class AgendaDiariaScreen extends StatelessWidget {
                         icon: Icons.cancel,
                         color: Colors.red.shade300,
                       ),
+                      SizedBox(
+                        width: 2,
+                      ),
                       Buttons(
                         icon: Icons.check_circle,
                         color: Colors.green.shade300,
@@ -77,18 +80,14 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(15),
       child: InkWell(
         splashColor: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(15),
         onTap: () {},
         child: Container(
             padding: EdgeInsets.all(12),
-            margin: EdgeInsets.symmetric(
-              horizontal: 1,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-            ),
             child: Icon(
               icon,
               color: color,
