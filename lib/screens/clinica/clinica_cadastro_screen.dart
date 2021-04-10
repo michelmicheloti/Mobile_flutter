@@ -1,4 +1,5 @@
 import 'package:agenda/components/buttons_cancel_save.dart';
+import 'package:agenda/components/text_with_textinput.dart';
 import 'package:flutter/material.dart';
 
 class ClinicaCadastroScreen extends StatelessWidget {
@@ -42,25 +43,37 @@ class ClinicaCadastroScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MyRow(
-                  title: "Início dos Atendimentos",
-                  hint: "12:00",
-                  textInputType: TextInputType.datetime,
+                Container(
+                  width: mediaQuery.size.width * 0.8,
+                  child: TextWithTextInput(
+                    title: "Início dos Atendimentos",
+                    hint: "12:00",
+                    textInputType: TextInputType.datetime,
+                  ),
                 ),
-                MyRow(
-                  title: "Fim dos Atendimentos",
-                  hint: "18:00",
-                  textInputType: TextInputType.datetime,
+                Container(
+                  width: mediaQuery.size.width * 0.8,
+                  child: TextWithTextInput(
+                    title: "Fim dos Atendimentos",
+                    hint: "18:00",
+                    textInputType: TextInputType.datetime,
+                  ),
                 ),
-                MyRow(
-                  title: "Minutos de Atendimentos",
-                  hint: "30",
-                  textInputType: TextInputType.datetime,
+                Container(
+                  width: mediaQuery.size.width * 0.8,
+                  child: TextWithTextInput(
+                    title: "Minutos de Atendimentos",
+                    hint: "30",
+                    textInputType: TextInputType.datetime,
+                  ),
                 ),
-                MyRow(
-                  title: "Valor do Atendimento",
-                  hint: "R\$ 50,00",
-                  textInputType: TextInputType.number,
+                Container(
+                  width: mediaQuery.size.width * 0.8,
+                  child: TextWithTextInput(
+                    title: "Valor do Atendimento",
+                    hint: "R\$ 50,00",
+                    textInputType: TextInputType.number,
+                  ),
                 ),
                 Column(
                   children: [
@@ -87,7 +100,10 @@ class ClinicaCadastroScreen extends StatelessWidget {
                         DiasDaSemana(text: "SAB"),
                       ],
                     ),
-                    ButtonsCancelSave(),
+                    Container(
+                      width: mediaQuery.size.width * 0.9,
+                      child: ButtonsCancelSave(),
+                    ),
                   ],
                 ),
               ],
@@ -129,59 +145,6 @@ class DiasDaSemana extends StatelessWidget {
             height: 45,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class MyRow extends StatelessWidget {
-  final String title;
-  final String hint;
-  final TextInputType textInputType;
-
-  const MyRow({
-    Key? key,
-    required this.title,
-    required this.hint,
-    required this.textInputType,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16,
-        horizontal: 4,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-          ),
-          Container(
-            width: 100,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: TextField(
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-              ),
-              keyboardType: textInputType,
-              decoration: InputDecoration(
-                hintText: hint,
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
