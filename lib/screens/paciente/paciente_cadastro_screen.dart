@@ -53,23 +53,20 @@ class PacienteCadastroScreen extends StatelessWidget {
                 icon: Icon(Icons.person_outline_rounded),
               ),
               DropDown(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Seletores(
-                      widthTotal: widthTotal,
-                      icon: Icon(Icons.crop_square, size: 40),
-                      text: "Convênio",
-                    ),
-                    Seletores(
-                      widthTotal: widthTotal,
-                      icon: Icon(Icons.crop_square, size: 40),
-                      text: "Particular",
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Seletores(
+                    widthTotal: widthTotal,
+                    icon: Icon(Icons.crop_square, size: 40),
+                    text: "Convênio",
+                  ),
+                  Seletores(
+                    widthTotal: widthTotal,
+                    icon: Icon(Icons.crop_square, size: 40),
+                    text: "Particular",
+                  ),
+                ],
               ),
               TextInput(
                 widthTotal: widthTotal,
@@ -113,25 +110,29 @@ class Seletores extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Material(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-          child: InkWell(
-            onTap: () {},
-            child: Container(
-              width: widthTotal * 0.15,
-              height: widthTotal * 0.15,
-              child: icon,
+        Container(
+          child: Material(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                width: widthTotal * 0.12,
+                height: widthTotal * 0.12,
+                child: icon,
+              ),
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.only(left: 8, right: 16),
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          padding: EdgeInsets.all(4),
+          child: FittedBox(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

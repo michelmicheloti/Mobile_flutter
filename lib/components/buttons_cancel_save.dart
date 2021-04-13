@@ -46,15 +46,19 @@ class MyButton extends StatelessWidget {
       onPressed: () {},
       child: Text(
         text,
+        style: TextStyle(
+          fontSize: 16,
+        ),
       ),
-      style: ButtonStyle(        
+      style: ButtonStyle(
         backgroundColor: color,
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
         ),
-        elevation:  MaterialStateProperty.all<double>(5),
+        elevation: MaterialStateProperty.all<double>(5),
+        padding: MaterialStateProperty.all(EdgeInsets.all(12)),
       ),
     );
   }

@@ -30,7 +30,7 @@ class TextInput extends StatelessWidget {
           ),
           child: TextField(
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
             ),
             keyboardType: textInputType,
             decoration: InputDecoration(

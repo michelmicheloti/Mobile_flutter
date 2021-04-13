@@ -13,10 +13,10 @@ class RendimentosScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as HomePageIcons;
 
     final widthTotal = MediaQuery.of(context).size.width;
+    final heigthTotal = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        // title: Text(homePageIcons.title),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -28,37 +28,43 @@ class RendimentosScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            DropDown(),
-            TextInput(
-              widthTotal: widthTotal,
-              textInputType: TextInputType.datetime,
-              icon: Icon(Icons.calendar_today),
-              labelText: "Data Inicial",
-              hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+        child: SingleChildScrollView(
+          child: Container(
+            height: heigthTotal * 0.8,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                DropDown(),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.datetime,
+                  icon: Icon(Icons.calendar_today),
+                  labelText: "Data Inicial",
+                  hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+                ),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.datetime,
+                  icon: Icon(Icons.calendar_today),
+                  labelText: "Data Final",
+                  hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+                ),
+                Container(
+                  width: widthTotal * 0.8,
+                  child: TextWithTextInput(
+                    title: "Valor a Receber",
+                    hint: "R\$50,00",
+                    textInputType:
+                        TextInputType.numberWithOptions(decimal: true),
+                  ),
+                ),
+                Container(
+                  width: widthTotal * 0.9,
+                  child: ButtonsCancelSave(),
+                ),
+              ],
             ),
-            TextInput(
-              widthTotal: widthTotal,
-              textInputType: TextInputType.datetime,
-              icon: Icon(Icons.calendar_today),
-              labelText: "Data Final",
-              hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
-            ),
-            Container(
-              width: widthTotal * 0.8,
-              child: TextWithTextInput(
-                title: "Valor a Receber",
-                hint: "R\$50,00",
-                textInputType: TextInputType.numberWithOptions(decimal: true),
-              ),
-            ),
-            Container(
-              width: widthTotal * 0.9,
-              child: ButtonsCancelSave(),
-            ),
-          ],
+          ),
         ),
       ),
     );

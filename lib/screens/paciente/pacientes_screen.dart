@@ -117,9 +117,9 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width * 0.9,
           padding: EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -133,11 +133,11 @@ class _DropDownState extends State<DropDown> {
             dropdownColor: Colors.white,
             underline: SizedBox(),
             icon: Icon(Icons.arrow_drop_down),
-            iconSize: 24,
+            iconSize: 32,
             isExpanded: true,
             style: TextStyle(
               color: Colors.black,
-              fontSize: 24,
+              fontSize: 20,
             ),
             value: valueChoose,
             onChanged: (newValue) {

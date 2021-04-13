@@ -1,11 +1,13 @@
 import 'package:agenda/components/buttons_cancel_save.dart';
-import 'package:agenda/components/text_with_textinput.dart';
+import 'package:agenda/components/text_input.dart';
 import 'package:flutter/material.dart';
 
 class ClinicaCadastroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+
+    final widthTotal = mediaQuery.size.width;
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
@@ -43,37 +45,33 @@ class ClinicaCadastroScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: mediaQuery.size.width * 0.8,
-                  child: TextWithTextInput(
-                    title: "Início dos Atendimentos",
-                    hint: "12:00",
-                    textInputType: TextInputType.datetime,
-                  ),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.datetime,
+                  labelText: "Início dos Atendimentos",
+                  hint: "12:00",
+                  icon: Icon(Icons.calendar_today),
                 ),
-                Container(
-                  width: mediaQuery.size.width * 0.8,
-                  child: TextWithTextInput(
-                    title: "Fim dos Atendimentos",
-                    hint: "18:00",
-                    textInputType: TextInputType.datetime,
-                  ),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.datetime,
+                  labelText: "Fim dos Atendimentos",
+                  hint: "18:00",
+                  icon: Icon(Icons.calendar_today),
                 ),
-                Container(
-                  width: mediaQuery.size.width * 0.8,
-                  child: TextWithTextInput(
-                    title: "Minutos de Atendimentos",
-                    hint: "30",
-                    textInputType: TextInputType.datetime,
-                  ),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.datetime,
+                  labelText: "Minutos de Atendimentos",
+                  hint: "00:30",
+                  icon: Icon(Icons.access_time),
                 ),
-                Container(
-                  width: mediaQuery.size.width * 0.8,
-                  child: TextWithTextInput(
-                    title: "Valor do Atendimento",
-                    hint: "R\$ 50,00",
-                    textInputType: TextInputType.number,
-                  ),
+                TextInput(
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.number,
+                  labelText: "Valor do Atendimento",
+                  hint: "R\$50,00",
+                  icon: Icon(Icons.monetization_on_outlined),
                 ),
                 Column(
                   children: [
