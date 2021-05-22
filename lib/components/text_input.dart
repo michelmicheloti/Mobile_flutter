@@ -8,6 +8,7 @@ class TextInput extends StatelessWidget {
     this.hint,
     this.labelText,
     this.icon,
+    this.textController,
   }) : super(key: key);
 
   final double widthTotal;
@@ -15,6 +16,7 @@ class TextInput extends StatelessWidget {
   final String? hint;
   final String? labelText;
   final Icon? icon;
+  final TextEditingController? textController;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class TextInput extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
             ),
+            controller: textController,
             keyboardType: textInputType,
             decoration: InputDecoration(
               labelText: labelText,

@@ -1,5 +1,5 @@
-import 'package:agenda/components/buttons_cancel_save.dart';
 import 'package:agenda/components/text_input.dart';
+import 'package:agenda/models/clinica.dart';
 import 'package:flutter/material.dart';
 
 class ClinicaCadastroScreen extends StatelessWidget {
@@ -8,13 +8,34 @@ class ClinicaCadastroScreen extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context);
 
     final widthTotal = mediaQuery.size.width;
+    final TextEditingController _controladorInicioAtentimentos =
+        TextEditingController();
+    final TextEditingController _controladorFimAtentimentos =
+        TextEditingController();
+    final TextEditingController _controladorMinutosAtentimentos =
+        TextEditingController();
+    final TextEditingController _controladorValor = TextEditingController();
+    final TextEditingController _controladorDiaSemana = TextEditingController();
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
     );
 
     void _saveItem() {
-      print("salvou");
+      final Clinica clinica = Clinica(
+        inicioAtentimentos: _controladorInicioAtentimentos.text,
+        fimAtentimentos: _controladorFimAtentimentos.text,
+        minutosAtentimentos: _controladorMinutosAtentimentos.text,
+        valor: _controladorValor.text,
+        diaSemana: _controladorDiaSemana.text,
+      );
+      Clinica(
+              inicioAtentimentos: _controladorInicioAtentimentos.text,
+              fimAtentimentos: _controladorFimAtentimentos.text,
+              minutosAtentimentos: _controladorMinutosAtentimentos.text,
+              valor: _controladorValor.text,
+              diaSemana: _controladorDiaSemana.text)
+          .testeTeste();
     }
 
     final availabelHeight = mediaQuery.size.height -
@@ -50,6 +71,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextInput(
+                  textController: _controladorInicioAtentimentos,
                   widthTotal: widthTotal,
                   textInputType: TextInputType.datetime,
                   labelText: "Início dos Atendimentos",
@@ -57,6 +79,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
                   icon: Icon(Icons.calendar_today),
                 ),
                 TextInput(
+                  textController: _controladorFimAtentimentos,
                   widthTotal: widthTotal,
                   textInputType: TextInputType.datetime,
                   labelText: "Fim dos Atendimentos",
@@ -64,6 +87,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
                   icon: Icon(Icons.calendar_today),
                 ),
                 TextInput(
+                  textController: _controladorMinutosAtentimentos,
                   widthTotal: widthTotal,
                   textInputType: TextInputType.datetime,
                   labelText: "Minutos de Atendimentos",
@@ -71,6 +95,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
                   icon: Icon(Icons.access_time),
                 ),
                 TextInput(
+                  textController: _controladorValor,
                   widthTotal: widthTotal,
                   textInputType: TextInputType.number,
                   labelText: "Valor do Atendimento",
@@ -104,9 +129,6 @@ class ClinicaCadastroScreen extends StatelessWidget {
                     ),
                     Container(
                       width: mediaQuery.size.width * 0.9,
-                      // child: ButtonsCancelSave(
-                      //   function: _saveItem,
-                      // ),
                       child: ElevatedButton(
                         onPressed: () {
                           _saveItem();

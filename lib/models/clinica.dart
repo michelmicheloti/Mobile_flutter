@@ -1,16 +1,12 @@
-import 'package:http/http.dart' as http;
-
 class Clinica {
-  final String id;
-  final DateTime inicioAtentimentos;
-  final DateTime fimAtentimentos;
+  final String inicioAtentimentos;
+  final String fimAtentimentos;
   final String minutosAtentimentos;
-  final double valor;
+  final String valor;
   final String diaSemana;
 
   Clinica(
-      {required this.id,
-      required this.inicioAtentimentos,
+      {required this.inicioAtentimentos,
       required this.fimAtentimentos,
       required this.diaSemana,
       required this.minutosAtentimentos,
@@ -22,7 +18,14 @@ class Clinica {
   // }
 
   void addClinica(Clinica novaClinica) {
-    const url = '';
-    http.post(url);
+    print(novaClinica.inicioAtentimentos);
+    // const url = '';
+    // http.post(url);
+  }
+
+  void testeTeste() {
+    print(this.inicioAtentimentos);
+    // const url = '';
+    // http.post(url);
   }
 }
