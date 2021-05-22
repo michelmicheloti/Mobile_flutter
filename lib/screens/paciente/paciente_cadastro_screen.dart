@@ -17,6 +17,10 @@ class PacienteCadastroScreen extends StatelessWidget {
       title: Text(""),
     );
 
+    void _saveItem() {
+      print("salvou");
+    }
+
     final availabelHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
         mediaQuery.padding.top;
@@ -84,7 +88,9 @@ class PacienteCadastroScreen extends StatelessWidget {
               ),
               Container(
                 width: widthTotal * 0.9,
-                child: ButtonsCancelSave(),
+                child: ButtonsCancelSave(
+                  function: _saveItem,
+                ),
               ),
             ],
           ),

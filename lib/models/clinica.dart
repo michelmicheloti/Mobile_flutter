@@ -20,4 +20,9 @@ class Clinica {
   //   // const url = '';
   //   // var response = await http.get(url);
   // }
+
+  void addClinica(Clinica novaClinica) {
+    const url = '';
+    http.post(url);
+  }
 }

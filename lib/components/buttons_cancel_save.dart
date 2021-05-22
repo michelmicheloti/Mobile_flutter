@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ButtonsCancelSave extends StatelessWidget {
+  final Function function;
   const ButtonsCancelSave({
     Key? key,
+    required this.function,
   }) : super(key: key);
 
   @override
@@ -14,12 +16,14 @@ class ButtonsCancelSave extends StatelessWidget {
         children: [
           MyButton(
             text: "Cancelar",
+            function: function,
             color: MaterialStateColor.resolveWith(
               (states) => Colors.red.shade400,
             ),
           ),
           MyButton(
             text: "Salvar",
+            function: function,
             color: MaterialStateColor.resolveWith(
               (states) => Colors.green.shade300,
             ),
@@ -33,17 +37,19 @@ class ButtonsCancelSave extends StatelessWidget {
 class MyButton extends StatelessWidget {
   final String text;
   final MaterialStateColor color;
+  final Function function;
 
   const MyButton({
     Key? key,
     required this.text,
     required this.color,
+    required this.function,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
+    var elevatedButton = ElevatedButton(
+      onPressed: function(),
       child: Text(
         text,
         style: TextStyle(
@@ -61,5 +67,6 @@ class MyButton extends StatelessWidget {
         padding: MaterialStateProperty.all(EdgeInsets.all(12)),
       ),
     );
+    return elevatedButton;
   }
 }

@@ -13,6 +13,10 @@ class ClinicaCadastroScreen extends StatelessWidget {
       title: Text(""),
     );
 
+    void _saveItem() {
+      print("salvou");
+    }
+
     final availabelHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
         mediaQuery.padding.top;
@@ -32,7 +36,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body: Form(
         child: Container(
           height: availabelHeight * 1,
           width: double.infinity,
@@ -100,7 +104,34 @@ class ClinicaCadastroScreen extends StatelessWidget {
                     ),
                     Container(
                       width: mediaQuery.size.width * 0.9,
-                      child: ButtonsCancelSave(),
+                      // child: ButtonsCancelSave(
+                      //   function: _saveItem,
+                      // ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _saveItem();
+                        },
+                        child: Text(
+                          "Salvar",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                            (states) => Colors.green.shade300,
+                          ),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                          elevation: MaterialStateProperty.all<double>(5),
+                          padding:
+                              MaterialStateProperty.all(EdgeInsets.all(12)),
+                        ),
+                      ),
                     ),
                   ],
                 ),

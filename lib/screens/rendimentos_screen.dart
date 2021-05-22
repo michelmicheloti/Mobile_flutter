@@ -14,6 +14,9 @@ class RendimentosScreen extends StatelessWidget {
 
     final widthTotal = MediaQuery.of(context).size.width;
     final heigthTotal = MediaQuery.of(context).size.height;
+    void _saveItem() {
+      print("salvou");
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +63,9 @@ class RendimentosScreen extends StatelessWidget {
                 ),
                 Container(
                   width: widthTotal * 0.9,
-                  child: ButtonsCancelSave(),
+                  child: ButtonsCancelSave(
+                    function: _saveItem,
+                  ),
                 ),
               ],
             ),
