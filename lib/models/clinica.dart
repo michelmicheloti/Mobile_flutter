@@ -1,9 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-class Clinica with ChangeNotifier {
+class Clinica {
   final String _uri =
       'https://mobile-flutter-fb11c-default-rtdb.firebaseio.com/clinicas.json';
   final _client = http.Client();

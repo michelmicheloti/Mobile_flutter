@@ -115,13 +115,6 @@ class _DropDownState extends State<DropDown> {
   }
 
   String? valueChoose;
-  List listItem = [
-    "Clínica_1",
-    "Clínica_2",
-    "Clínica_3",
-    "Clínica_4",
-    "Clínica_5",
-  ];
 
   @override
   Widget build(BuildContext context) {
