@@ -1,5 +1,6 @@
 import 'package:agenda/components/buttons_cancel_save.dart';
 import 'package:agenda/components/text_input.dart';
+import 'package:agenda/models/paciente.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,12 +13,28 @@ class PacienteCadastroScreen extends StatelessWidget {
 
     // final heightTotal = MediaQuery.of(context).size.height;
     final widthTotal = MediaQuery.of(context).size.width;
+    final TextEditingController _controladorNomePaciente =
+        TextEditingController();
+    final TextEditingController _controladorClinica = TextEditingController();
+    final TextEditingController _controladorConvenioParticular =
+        TextEditingController();
+    final TextEditingController _controladorValorConsulta =
+        TextEditingController();
+    final TextEditingController _controladorDataAtendimento =
+        TextEditingController();
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
     );
 
     void _saveItem() {
+      Paciente(
+        nomePaciente: _controladorNomePaciente.text,
+        clinica: _controladorClinica.text,
+        convenioParticular: _controladorConvenioParticular.text,
+        valorConsulta: _controladorValorConsulta.text,
+        dataAtendimento: _controladorDataAtendimento.text,
+      ).addPaciente().then((_) => {Navigator.of(context).pop()});
       print("salvou");
     }
 
@@ -51,6 +68,7 @@ class PacienteCadastroScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextInput(
+                textController: _controladorNomePaciente,
                 widthTotal: widthTotal,
                 textInputType: TextInputType.text,
                 labelText: "Nome do paciente",
@@ -73,6 +91,7 @@ class PacienteCadastroScreen extends StatelessWidget {
                 ],
               ),
               TextInput(
+                textController: _controladorValorConsulta,
                 widthTotal: widthTotal,
                 textInputType: TextInputType.number,
                 labelText: "Valor da Consulta",
@@ -80,6 +99,7 @@ class PacienteCadastroScreen extends StatelessWidget {
                 icon: Icon(Icons.monetization_on_outlined),
               ),
               TextInput(
+                textController: _controladorDataAtendimento,
                 widthTotal: widthTotal,
                 textInputType: TextInputType.datetime,
                 icon: Icon(Icons.calendar_today),
@@ -87,9 +107,29 @@ class PacienteCadastroScreen extends StatelessWidget {
                 hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
               ),
               Container(
-                width: widthTotal * 0.9,
-                child: ButtonsCancelSave(
-                  function: _saveItem,
+                width: mediaQuery.size.width * 0.9,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _saveItem();
+                  },
+                  child: Text(
+                    "Salvar",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Colors.green.shade300,
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                    ),
+                    elevation: MaterialStateProperty.all<double>(5),
+                    padding: MaterialStateProperty.all(EdgeInsets.all(12)),
+                  ),
                 ),
               ),
             ],

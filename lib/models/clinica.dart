@@ -27,18 +27,21 @@ class Clinica {
     try {
       var clinica;
       var response = await _client.get(Uri.parse(_uri));
-      Map<String, dynamic> data = json.decode(response.body);
-      data.forEach((idClinica, clinicaData) {
-        clinica = {
-          idClinica,
-          clinicaData['nomeClinica'],
-          clinicaData['inicioAtentimentos'],
-          clinicaData['fimAtentimentos'],
-          clinicaData['minutosAtentimentos'],
-          clinicaData['valor'],
-        };
-        listaClinicas.add(clinica.toString());
-      });
+      if (response != null) {
+        Map<String, dynamic> data = json.decode(response.body);
+        data.forEach((idClinica, clinicaData) {
+          clinica = {
+            idClinica,
+            clinicaData['nomeClinica'],
+            clinicaData['inicioAtentimentos'],
+            clinicaData['fimAtentimentos'],
+            clinicaData['minutosAtentimentos'],
+            clinicaData['valor'],
+          };
+          listaClinicas.add(clinica.toString());
+        });
+      }
+
       return listaClinicas;
     } finally {
       _client.close();
@@ -49,7 +52,7 @@ class Clinica {
     try {
       var uriResponse = await _client.post(Uri.parse(_uri),
           body: json.encode({
-            'nomeClinica': 'teste',
+            'nomeClinica': "teste 2",
             'inicioAtentimentos': this.inicioAtentimentos,
             'fimAtentimentos': this.fimAtentimentos,
             'minutosAtentimentos': this.minutosAtentimentos,

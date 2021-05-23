@@ -1,3 +1,4 @@
+import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/models/clinica.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ class ClinicaCadastroScreen extends StatelessWidget {
     final TextEditingController _controladorValor = TextEditingController();
     final TextEditingController _controladorNomeClinica =
         TextEditingController();
-    // final TextEditingController _controladorDiaSemana = TextEditingController();
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
@@ -31,7 +31,9 @@ class ClinicaCadastroScreen extends StatelessWidget {
         minutosAtentimentos: _controladorMinutosAtentimentos.text,
         valor: _controladorValor.text,
         // diaSemana: _controladorDiaSemana.text
-      ).addClinica().then((_) => {Navigator.of(context).pop()});
+      )
+          .addClinica()
+          .then((_) => {Navigator.of(context).pushNamed(AppRoute.CLINICAS)});
     }
 
     final availabelHeight = mediaQuery.size.height -
@@ -69,7 +71,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
                 TextInput(
                   textController: _controladorNomeClinica,
                   widthTotal: widthTotal,
-                  textInputType: TextInputType.name,
+                  textInputType: TextInputType.url,
                   labelText: "Nome da Clínica",
                   hint: "Clinica Tal",
                   icon: Icon(Icons.text_fields),

@@ -21,13 +21,10 @@ class _ClinicasScreen extends State<ClinicasScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final homePageIcons =
-        ModalRoute.of(context)?.settings.arguments as HomePageIcons;
-
     final mediaQuery = MediaQuery.of(context);
 
     final PreferredSizeWidget appBar = AppBar(
-      title: Text(homePageIcons.title),
+      title: Text("Clinicas"),
     );
 
     final availabelHeight = mediaQuery.size.height -
@@ -49,7 +46,7 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    homePageIcons.title,
+                    "Clinicas",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
