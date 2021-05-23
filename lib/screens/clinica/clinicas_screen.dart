@@ -11,11 +11,11 @@ class ClinicasScreen extends StatefulWidget {
 // ignore: must_be_immutable
 class _ClinicasScreen extends State<ClinicasScreen> {
   List<String> listaClinicas = [];
-  late Future<List<String>> vai;
+  late Future<List<String>> clinicas;
 
   @override
   void initState() {
-    vai = Clinica().carregaClinica();
+    clinicas = Clinica().carregaClinica();
     super.initState();
   }
 
@@ -35,7 +35,7 @@ class _ClinicasScreen extends State<ClinicasScreen> {
         mediaQuery.padding.top;
     return Container(
       child: FutureBuilder(
-        future: vai,
+        future: clinicas,
         builder: (ctx, snapshot) {
           if (!snapshot.hasData)
             return Center(
