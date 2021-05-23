@@ -1,6 +1,5 @@
 import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/models/clinica.dart';
-import 'package:agenda/models/home_page_icons.dart';
 import 'package:flutter/material.dart';
 
 class ClinicasScreen extends StatefulWidget {

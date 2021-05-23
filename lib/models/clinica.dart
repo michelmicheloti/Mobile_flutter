@@ -27,20 +27,18 @@ class Clinica {
     try {
       var clinica;
       var response = await _client.get(Uri.parse(_uri));
-      if (response != null) {
-        Map<String, dynamic> data = json.decode(response.body);
-        data.forEach((idClinica, clinicaData) {
-          clinica = {
-            idClinica,
-            clinicaData['nomeClinica'],
-            clinicaData['inicioAtentimentos'],
-            clinicaData['fimAtentimentos'],
-            clinicaData['minutosAtentimentos'],
-            clinicaData['valor'],
-          };
-          listaClinicas.add(clinica.toString());
-        });
-      }
+      Map<String, dynamic> data = json.decode(response.body);
+      data.forEach((idClinica, clinicaData) {
+        clinica = {
+          idClinica,
+          clinicaData['nomeClinica'],
+          clinicaData['inicioAtentimentos'],
+          clinicaData['fimAtentimentos'],
+          clinicaData['minutosAtentimentos'],
+          clinicaData['valor'],
+        };
+        listaClinicas.add(clinica.toString());
+      });
 
       return listaClinicas;
     } finally {
