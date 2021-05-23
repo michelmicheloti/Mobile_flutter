@@ -57,6 +57,7 @@ class Clinica with ChangeNotifier {
             'minutosAtentimentos': this.minutosAtentimentos,
             'valor': this.valor
           }));
+      print(uriResponse);
     } finally {
       _client.close();
     }
