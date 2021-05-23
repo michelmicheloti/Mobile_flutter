@@ -1,14 +1,20 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 class Clinica {
+  final String nomeClinica;
   final String inicioAtentimentos;
   final String fimAtentimentos;
   final String minutosAtentimentos;
   final String valor;
-  final String diaSemana;
+  // final String diaSemana;
 
   Clinica(
-      {required this.inicioAtentimentos,
+      {required this.nomeClinica,
+      required this.inicioAtentimentos,
       required this.fimAtentimentos,
-      required this.diaSemana,
+      // required this.diaSemana,
       required this.minutosAtentimentos,
       required this.valor});
 
@@ -17,15 +23,22 @@ class Clinica {
   //   // var response = await http.get(url);
   // }
 
-  void addClinica(Clinica novaClinica) {
-    print(novaClinica.inicioAtentimentos);
-    // const url = '';
-    // http.post(url);
-  }
-
-  void testeTeste() {
-    print(this.inicioAtentimentos);
-    // const url = '';
-    // http.post(url);
+  Future<void> addClinica() async {
+    var client = http.Client();
+    try {
+      var uriResponse = await client.post(
+          Uri.parse(
+              'https://mobile-flutter-fb11c-default-rtdb.firebaseio.com/clinicas.json'),
+          body: json.encode({
+            'nomeClinica': 'teste',
+            'inicioAtentimentos': this.inicioAtentimentos,
+            'fimAtentimentos': this.fimAtentimentos,
+            'minutosAtentimentos': this.minutosAtentimentos,
+            'valor': this.valor
+          }));
+      print(uriResponse);
+    } finally {
+      client.close();
+    }
   }
 }

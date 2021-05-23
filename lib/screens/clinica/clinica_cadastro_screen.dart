@@ -15,27 +15,23 @@ class ClinicaCadastroScreen extends StatelessWidget {
     final TextEditingController _controladorMinutosAtentimentos =
         TextEditingController();
     final TextEditingController _controladorValor = TextEditingController();
-    final TextEditingController _controladorDiaSemana = TextEditingController();
+    final TextEditingController _controladorNomeClinica =
+        TextEditingController();
+    // final TextEditingController _controladorDiaSemana = TextEditingController();
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
     );
 
     void _saveItem() {
-      final Clinica clinica = Clinica(
+      Clinica(
+        nomeClinica: _controladorNomeClinica.text,
         inicioAtentimentos: _controladorInicioAtentimentos.text,
         fimAtentimentos: _controladorFimAtentimentos.text,
         minutosAtentimentos: _controladorMinutosAtentimentos.text,
         valor: _controladorValor.text,
-        diaSemana: _controladorDiaSemana.text,
-      );
-      Clinica(
-              inicioAtentimentos: _controladorInicioAtentimentos.text,
-              fimAtentimentos: _controladorFimAtentimentos.text,
-              minutosAtentimentos: _controladorMinutosAtentimentos.text,
-              valor: _controladorValor.text,
-              diaSemana: _controladorDiaSemana.text)
-          .testeTeste();
+        // diaSemana: _controladorDiaSemana.text
+      ).addClinica().then((_) => {Navigator.of(context).pop()});
     }
 
     final availabelHeight = mediaQuery.size.height -
@@ -71,11 +67,19 @@ class ClinicaCadastroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextInput(
+                  textController: _controladorNomeClinica,
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.name,
+                  labelText: "Nome da Clínica",
+                  hint: "Clinica Tal",
+                  icon: Icon(Icons.text_fields),
+                ),
+                TextInput(
                   textController: _controladorInicioAtentimentos,
                   widthTotal: widthTotal,
                   textInputType: TextInputType.datetime,
                   labelText: "Início dos Atendimentos",
-                  hint: "12:00",
+                  hint: "dd/mm/yyyy",
                   icon: Icon(Icons.calendar_today),
                 ),
                 TextInput(
@@ -83,7 +87,7 @@ class ClinicaCadastroScreen extends StatelessWidget {
                   widthTotal: widthTotal,
                   textInputType: TextInputType.datetime,
                   labelText: "Fim dos Atendimentos",
-                  hint: "18:00",
+                  hint: "dd/mm/yyyy",
                   icon: Icon(Icons.calendar_today),
                 ),
                 TextInput(
@@ -104,29 +108,29 @@ class ClinicaCadastroScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Dias de Atendimento",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        DiasDaSemana(text: "SEG"),
-                        DiasDaSemana(text: "TER"),
-                        DiasDaSemana(text: "QUA"),
-                        DiasDaSemana(text: "QUI"),
-                        DiasDaSemana(text: "SEX"),
-                        DiasDaSemana(text: "SAB"),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       "Dias de Atendimento",
+                    //       style: TextStyle(
+                    //         fontSize: 18,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: [
+                    //     DiasDaSemana(text: "SEG"),
+                    //     DiasDaSemana(text: "TER"),
+                    //     DiasDaSemana(text: "QUA"),
+                    //     DiasDaSemana(text: "QUI"),
+                    //     DiasDaSemana(text: "SEX"),
+                    //     DiasDaSemana(text: "SAB"),
+                    //   ],
+                    // ),
                     Container(
                       width: mediaQuery.size.width * 0.9,
                       child: ElevatedButton(
