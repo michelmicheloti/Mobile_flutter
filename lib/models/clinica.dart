@@ -50,7 +50,7 @@ class Clinica {
     try {
       var uriResponse = await _client.post(Uri.parse(_uri),
           body: json.encode({
-            'nomeClinica': "teste 2",
+            'nomeClinica': this.nomeClinica,
             'inicioAtentimentos': this.inicioAtentimentos,
             'fimAtentimentos': this.fimAtentimentos,
             'minutosAtentimentos': this.minutosAtentimentos,
