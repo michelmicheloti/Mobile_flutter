@@ -1,3 +1,4 @@
+import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/models/clinica.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,9 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
         minutosAtentimentos: _controladorMinutosAtentimentos.text,
         valor: _controladorValor.text,
         // diaSemana: _controladorDiaSemana.text
-      ).addClinica().then((_) => {Navigator.of(context).pop()});
+      )
+          .addClinica()
+          .then((_) => {Navigator.of(context).pushNamed(AppRoute.CLINICAS)});
     }
 
     final availabelHeight = mediaQuery.size.height -
