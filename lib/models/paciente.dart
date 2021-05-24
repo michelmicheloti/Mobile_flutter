@@ -31,7 +31,7 @@ class Paciente {
           idPaciente,
           pacienteData['nomePaciente'],
           pacienteData['clinica'],
-          pacienteData['convenioParticular'],
+          // pacienteData['convenioParticular'],
           pacienteData['valorConsulta'],
           pacienteData['dataAtendimento'],
         };
@@ -49,7 +49,7 @@ class Paciente {
           body: json.encode({
             'nomePaciente': this.nomePaciente,
             'clinica': this.clinica,
-            'convenioParticular': this.convenioParticular,
+            // 'convenioParticular': 'particular',
             'valorConsulta': this.valorConsulta,
             'dataAtendimento': this.dataAtendimento
           }));

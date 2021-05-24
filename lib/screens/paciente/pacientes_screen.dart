@@ -1,7 +1,10 @@
 import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/models/clinica.dart';
+import 'package:agenda/Utils/globals.dart' as globals;
 import 'package:agenda/models/home_page_icons.dart';
 import 'package:flutter/material.dart';
+
+import 'paciente_cadastro_screen.dart';
 
 class PacientesScreen extends StatefulWidget {
   const PacientesScreen({Key? key}) : super(key: key);
@@ -15,13 +18,13 @@ class _PacientesScreenState extends State<PacientesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final homePageIcons =
-        ModalRoute.of(context)?.settings.arguments as HomePageIcons;
+    // final homePageIcons =
+    //     ModalRoute.of(context)?.settings.arguments as HomePageIcons;
 
     final mediaQuery = MediaQuery.of(context);
 
     final PreferredSizeWidget appBar = AppBar(
-      title: Text(homePageIcons.title),
+      title: Text("Pacientes"),
     );
 
     final availabelHeight = mediaQuery.size.height -
@@ -34,7 +37,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              homePageIcons.title,
+              "Pacientes",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ],
@@ -155,6 +158,8 @@ class _DropDownState extends State<DropDown> {
                   onChanged: (newValue) {
                     setState(() {
                       valueChoose = newValue as String;
+                      globals.valueDropClinica =
+                          valueChoose.toString().split(",")[1];
                     });
                   },
                   items: listaClinicas.map(

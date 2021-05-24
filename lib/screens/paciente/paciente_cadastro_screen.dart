@@ -1,4 +1,6 @@
+import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
+import 'package:agenda/Utils/globals.dart' as globals;
 import 'package:agenda/models/paciente.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -6,21 +8,20 @@ import 'package:intl/intl.dart';
 import 'pacientes_screen.dart';
 
 class PacienteCadastroScreen extends StatelessWidget {
+  final TextEditingController _controladorNomePaciente =
+      TextEditingController();
+  final TextEditingController _controladorConvenioParticular =
+      TextEditingController();
+  final TextEditingController _controladorValorConsulta =
+      TextEditingController();
+  final TextEditingController _controladorDataAtendimento =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
 
-    // final heightTotal = MediaQuery.of(context).size.height;
     final widthTotal = MediaQuery.of(context).size.width;
-    final TextEditingController _controladorNomePaciente =
-        TextEditingController();
-    final TextEditingController _controladorClinica = TextEditingController();
-    final TextEditingController _controladorConvenioParticular =
-        TextEditingController();
-    final TextEditingController _controladorValorConsulta =
-        TextEditingController();
-    final TextEditingController _controladorDataAtendimento =
-        TextEditingController();
 
     final PreferredSizeWidget appBar = AppBar(
       title: Text(""),
@@ -29,12 +30,13 @@ class PacienteCadastroScreen extends StatelessWidget {
     void _saveItem() {
       Paciente(
         nomePaciente: _controladorNomePaciente.text,
-        clinica: _controladorClinica.text,
+        clinica: globals.valueDropClinica,
         convenioParticular: _controladorConvenioParticular.text,
         valorConsulta: _controladorValorConsulta.text,
         dataAtendimento: _controladorDataAtendimento.text,
-      ).addPaciente().then((_) => {Navigator.of(context).pop()});
-      print("salvou");
+      )
+          .addPaciente()
+          .then((_) => {Navigator.of(context).pushNamed(AppRoute.PACIENTES)});
     }
 
     final availabelHeight = mediaQuery.size.height -
@@ -74,21 +76,21 @@ class PacienteCadastroScreen extends StatelessWidget {
                 icon: Icon(Icons.person_outline_rounded),
               ),
               DropDown(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Seletores(
-                    widthTotal: widthTotal,
-                    icon: Icon(Icons.crop_square, size: 40),
-                    text: "Convênio",
-                  ),
-                  Seletores(
-                    widthTotal: widthTotal,
-                    icon: Icon(Icons.crop_square, size: 40),
-                    text: "Particular",
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     Seletores(
+              //       widthTotal: widthTotal,
+              //       icon: Icon(Icons.crop_square, size: 40),
+              //       text: "Convênio",
+              //     ),
+              //     Seletores(
+              //       widthTotal: widthTotal,
+              //       icon: Icon(Icons.crop_square, size: 40),
+              //       text: "Particular",
+              //     ),
+              //   ],
+              // ),
               TextInput(
                 textController: _controladorValorConsulta,
                 widthTotal: widthTotal,
