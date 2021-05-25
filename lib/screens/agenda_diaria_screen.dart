@@ -1,7 +1,22 @@
 import 'package:agenda/models/home_page_icons.dart';
+import 'package:agenda/models/paciente.dart';
 import 'package:flutter/material.dart';
 
-class AgendaDiariaScreen extends StatelessWidget {
+class AgendaDiariaScreen extends StatefulWidget {
+  @override
+  _AgendaDiariaScreen createState() => _AgendaDiariaScreen();
+}
+
+class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
+  List<String> listaPacientes = [];
+  late Future<List<String>> pacientes;
+
+  @override
+  void initState() {
+    pacientes = Paciente().carregaPaciente();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final homePageIcons =
@@ -24,44 +39,89 @@ class AgendaDiariaScreen extends StatelessWidget {
         appBar.preferredSize.height -
         mediaQuery.padding.top;
 
-    return Scaffold(
-      appBar: appBar,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: availabelHeight * 0.9,
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            child: ListView.builder(
-              itemCount: 12,
-              itemBuilder: (ctx, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Hora(),
-                      NomePaciente(),
-                      Buttons(
-                        icon: Icons.cancel,
-                        color: Colors.red.shade300,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Buttons(
-                        icon: Icons.check_circle,
-                        color: Colors.green.shade300,
-                      )
-                    ],
+    return Container(
+      child: FutureBuilder(
+        future: pacientes,
+        builder: (ctx, snapshot) {
+          if (!snapshot.hasData)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          listaPacientes = snapshot.data.toString().split("}, {");
+
+          print(listaPacientes);
+
+          return Scaffold(
+            appBar: appBar,
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  height: availabelHeight * 0.9,
+                  width: double.infinity,
+                  padding: EdgeInsets.all(10),
+                  child: ListView.builder(
+                    itemCount: listaPacientes.length,
+                    itemBuilder: (ctx, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(15),
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 1,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Text(
+                                listaPacientes[index]
+                                    .split(",")[4]
+                                    .replaceAll("}]", ""),
+                              ),
+                            ),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(15),
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 1,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Text(
+                                  listaPacientes[index].split(",")[1],
+                                ),
+                              ),
+                            ),
+                            Buttons(
+                              icon: Icons.cancel,
+                              color: Colors.red.shade300,
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Buttons(
+                              icon: Icons.check_circle,
+                              color: Colors.green.shade300,
+                            )
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -97,52 +157,52 @@ class Buttons extends StatelessWidget {
   }
 }
 
-class NomePaciente extends StatelessWidget {
-  const NomePaciente({
-    Key? key,
-  }) : super(key: key);
+// class NomePaciente extends StatelessWidget {
+//   const NomePaciente({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      fit: FlexFit.tight,
-      child: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.symmetric(
-          horizontal: 1,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Text(
-          'Nome Paciente',
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Flexible(
+//       fit: FlexFit.tight,
+//       child: Container(
+//         alignment: Alignment.center,
+//         padding: EdgeInsets.all(15),
+//         margin: EdgeInsets.symmetric(
+//           horizontal: 1,
+//         ),
+//         decoration: BoxDecoration(
+//           color: Colors.white,
+//           borderRadius: BorderRadius.circular(15),
+//         ),
+//         child: Text(
+//           "testa",
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class Hora extends StatelessWidget {
-  const Hora({
-    Key? key,
-  }) : super(key: key);
+// class Hora extends StatelessWidget {
+//   const Hora({
+//     Key? key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      margin: EdgeInsets.symmetric(
-        horizontal: 1,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Text(
-        'HORA',
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.all(15),
+//       margin: EdgeInsets.symmetric(
+//         horizontal: 1,
+//       ),
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(15),
+//       ),
+//       child: Text(
+//         'HORA',
+//       ),
+//     );
+//   }
+// }

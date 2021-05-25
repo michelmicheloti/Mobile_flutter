@@ -81,6 +81,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.edit)),
                             ],
                           ),
                         );

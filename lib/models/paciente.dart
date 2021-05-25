@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class Paciente {
   final String _uri =
@@ -37,6 +38,7 @@ class Paciente {
         };
         listaPaciente.add(paciente.toString());
       });
+
       return listaPaciente;
     } finally {
       _client.close();
