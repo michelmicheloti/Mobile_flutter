@@ -11,14 +11,14 @@ class Paciente {
   final String? clinica;
   final String? valorConsulta;
   final String? dataAtendimento;
-  final String? atendido;
+  final String? statusAtendimento;
 
   Paciente(
       {this.id,
       this.nomePaciente,
       this.clinica,
       this.valorConsulta,
-      this.atendido,
+      this.statusAtendimento,
       this.dataAtendimento});
 
   Future<List<String>> carregaPaciente() async {
@@ -33,7 +33,7 @@ class Paciente {
             idPaciente,
             pacienteData['nomePaciente'],
             pacienteData['clinica'],
-            pacienteData['atendido'],
+            pacienteData['statusAtendimento'],
             pacienteData['valorConsulta'],
             pacienteData['dataAtendimento'],
           };
@@ -53,7 +53,7 @@ class Paciente {
           body: json.encode({
             'nomePaciente': this.nomePaciente,
             'clinica': this.clinica,
-            'atendido': 'false',
+            'statusAtendimento': 'false',
             'valorConsulta': this.valorConsulta,
             'dataAtendimento': this.dataAtendimento
           }));
@@ -71,6 +71,22 @@ class Paciente {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
+      );
+
+      print(response);
+    } finally {
+      _client.close();
+    }
+  }
+
+  Future<void> updateStatusAtendimento(id) async {
+    id = id.toString().replaceAll("[{", "");
+    try {
+      final http.Response response = await http.patch(
+        Uri.parse("$_baseUri/$id.json"),
+        body: json.encode({
+          'statusAtendimento': "true",
+        }),
       );
 
       print(response);

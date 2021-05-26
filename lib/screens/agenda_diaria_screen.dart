@@ -18,22 +18,20 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
     super.initState();
   }
 
-  Color _isLiked(atendimento) {
+  bool status(statusAtendimento) {
+    return statusAtendimento.toString().contains("false");
+  }
+
+  Color _isLiked(statusAtendimento) {
     Color colorBox;
-    bool a = atendimento.toString().contains("false");
+    bool a = statusAtendimento.toString().contains("false");
     if (a) {
       colorBox = Colors.white;
     } else {
-      colorBox = Colors.greenAccent;
+      colorBox = Colors.green.shade300;
     }
 
     return colorBox;
-  }
-
-  void delete(id) {
-    Paciente()
-        .removePaciente(id)
-        .then((_) => {Navigator.of(context).pushNamed(AppRoute.AGENDA_DIARIA)});
   }
 
   @override
@@ -123,7 +121,8 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                               ),
                             ),
                             Material(
-                              color: Colors.white,
+                              color:
+                                  _isLiked(listaPacientes[index].split(",")[3]),
                               borderRadius: BorderRadius.circular(15),
                               child: InkWell(
                                 splashColor: Theme.of(context).primaryColor,
@@ -153,7 +152,7 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                 borderRadius: BorderRadius.circular(15),
                                 onTap: () {
                                   Paciente()
-                                      .removePaciente(
+                                      .updateStatusAtendimento(
                                           listaPacientes[index].split(",")[0])
                                       .then((_) => {
                                             Navigator.of(context).pushNamed(
