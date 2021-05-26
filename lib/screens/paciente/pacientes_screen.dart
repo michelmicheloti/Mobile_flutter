@@ -1,5 +1,4 @@
 import 'package:agenda/Utils/app_routs.dart';
-import 'package:agenda/components/dropdown.dart';
 import 'package:agenda/models/paciente.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +81,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    width: mediaQuery.size.width * 0.9,
+                                    width: mediaQuery.size.width * 0.5,
                                     padding: EdgeInsets.all(15),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -92,6 +91,19 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                       listaPacientes[index].split(",")[1],
                                       textAlign: TextAlign.center,
                                     ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      Paciente()
+                                          .removePaciente(listaPacientes[index]
+                                              .split(",")[0])
+                                          .then((_) => {
+                                                Navigator.of(context).pushNamed(
+                                                    AppRoute.PACIENTES)
+                                              });
+                                    },
+                                    icon: Icon(Icons.cancel),
+                                    color: Colors.red.shade300,
                                   ),
                                 ],
                               ),

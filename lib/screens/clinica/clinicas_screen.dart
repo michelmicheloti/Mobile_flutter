@@ -39,6 +39,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
             );
           listaClinicas = snapshot.data.toString().split("}, {");
 
+          print(listaClinicas);
+
           return Scaffold(
             appBar: AppBar(
               title: Row(

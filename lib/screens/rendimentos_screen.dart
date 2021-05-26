@@ -1,4 +1,3 @@
-import 'package:agenda/components/buttons_cancel_save.dart';
 import 'package:agenda/components/dropdown.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/components/text_with_textinput.dart';
@@ -14,9 +13,6 @@ class RendimentosScreen extends StatelessWidget {
 
     final widthTotal = MediaQuery.of(context).size.width;
     final heigthTotal = MediaQuery.of(context).size.height;
-    void _saveItem() {
-      print("salvou");
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -63,9 +59,16 @@ class RendimentosScreen extends StatelessWidget {
                 ),
                 Container(
                   width: widthTotal * 0.9,
-                  child: ButtonsCancelSave(
-                    function: _saveItem,
+                  child: Text(
+                    "Tela não implementada!",
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  // child: ButtonsCancelSave(
+                  //   function: _saveItem,
+                  // ),
                 ),
               ],
             ),

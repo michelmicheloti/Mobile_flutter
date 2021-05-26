@@ -18,10 +18,28 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
     super.initState();
   }
 
+  Color _isLiked(atendimento) {
+    Color colorBox;
+    bool a = atendimento.toString().contains("false");
+    if (a) {
+      colorBox = Colors.white;
+    } else {
+      colorBox = Colors.greenAccent;
+    }
+
+    return colorBox;
+  }
+
+  void delete(id) {
+    Paciente()
+        .removePaciente(id)
+        .then((_) => {Navigator.of(context).pushNamed(AppRoute.AGENDA_DIARIA)});
+  }
+
   @override
   Widget build(BuildContext context) {
-    final homePageIcons =
-        ModalRoute.of(context)?.settings.arguments as HomePageIcons;
+    // final homePageIcons =
+    //     ModalRoute.of(context)?.settings.arguments as HomePageIcons;
 
     final mediaQuery = MediaQuery.of(context);
     final PreferredSizeWidget appBar = AppBar(
@@ -29,7 +47,7 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            homePageIcons.title,
+            "Agenda",
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ],
@@ -76,12 +94,13 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                 horizontal: 1,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: _isLiked(
+                                    listaPacientes[index].split(",")[3]),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               child: Text(
                                 listaPacientes[index]
-                                    .split(",")[4]
+                                    .split(",")[5]
                                     .replaceAll("}]", ""),
                               ),
                             ),
@@ -94,7 +113,8 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                   horizontal: 1,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: _isLiked(
+                                      listaPacientes[index].split(",")[3]),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 child: Text(
@@ -102,30 +122,52 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                Paciente()
-                                    .removePaciente(
-                                        listaPacientes[index].split(",")[0])
-                                    .then((_) => {
-                                          Navigator.of(context)
-                                              .pushNamed(AppRoute.AGENDA_DIARIA)
-                                        });
-                              },
-                              icon: Icon(Icons.cancel),
-                              color: Colors.red.shade300,
+                            Material(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              child: InkWell(
+                                splashColor: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(15),
+                                onTap: () {
+                                  Paciente()
+                                      .removePaciente(
+                                          listaPacientes[index].split(",")[0])
+                                      .then((_) => {
+                                            Navigator.of(context).pushNamed(
+                                                AppRoute.AGENDA_DIARIA)
+                                          });
+                                },
+                                child: Container(
+                                    padding: EdgeInsets.all(12),
+                                    child: Icon(
+                                      Icons.cancel,
+                                      color: Colors.red.shade300,
+                                    )),
+                              ),
                             ),
-                            Buttons(
-                              icon: Icons.cancel,
-                              color: Colors.red.shade300,
+                            Material(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              child: InkWell(
+                                splashColor: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(15),
+                                onTap: () {
+                                  Paciente()
+                                      .removePaciente(
+                                          listaPacientes[index].split(",")[0])
+                                      .then((_) => {
+                                            Navigator.of(context).pushNamed(
+                                                AppRoute.AGENDA_DIARIA)
+                                          });
+                                },
+                                child: Container(
+                                    padding: EdgeInsets.all(12),
+                                    child: Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green.shade300,
+                                    )),
+                              ),
                             ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Buttons(
-                              icon: Icons.check_circle,
-                              color: Colors.green.shade300,
-                            )
                           ],
                         ),
                       );
@@ -141,35 +183,40 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
   }
 }
 
-class Buttons extends StatelessWidget {
-  final IconData icon;
-  final Color color;
+// class Buttons extends StatelessWidget {
+//   final IconData icon;
+//   final Color color;
+//   final void function;
 
-  const Buttons({
-    Key? key,
-    required this.icon,
-    required this.color,
-  }) : super(key: key);
+//   const Buttons({
+//     Key? key,
+//     required this.icon,
+//     required this.color,
+//     required this.function,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(15),
-      child: InkWell(
-        splashColor: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(15),
-        onTap: () {},
-        child: Container(
-            padding: EdgeInsets.all(12),
-            child: Icon(
-              icon,
-              color: color,
-            )),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Material(
+//       color: Colors.white,
+//       borderRadius: BorderRadius.circular(15),
+//       child: InkWell(
+//         splashColor: Theme.of(context).primaryColor,
+//         borderRadius: BorderRadius.circular(15),
+//         onTap: () {
+//           // ignore: unnecessary_statements
+//           function;
+//         },
+//         child: Container(
+//             padding: EdgeInsets.all(12),
+//             child: Icon(
+//               icon,
+//               color: color,
+//             )),
+//       ),
+//     );
+//   }
+// }
 
 // class NomePaciente extends StatelessWidget {
 //   const NomePaciente({
