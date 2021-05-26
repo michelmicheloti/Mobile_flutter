@@ -69,7 +69,9 @@ class _DropDownState extends State<DropDown> {
                         child: Container(
                           alignment: Alignment.center,
                           child: Text(
-                            valueItem.split(",")[1],
+                            valueItem.contains(",")
+                                ? valueItem.split(",")[1]
+                                : "",
                           ),
                         ),
                       );

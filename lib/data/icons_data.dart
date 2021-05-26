@@ -3,7 +3,7 @@ import 'package:agenda/models/home_page_icons.dart';
 const ICONS_DATA = const [
   HomePageIcons(
     id: '1',
-    title: 'Agenda Diária',
+    title: 'Agenda',
     image: 'assets\\img\\agendaDIaria.jpg',
   ),
   HomePageIcons(

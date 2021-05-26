@@ -62,7 +62,9 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                     width: double.infinity,
                     padding: EdgeInsets.all(10),
                     child: ListView.builder(
-                      itemCount: listaClinicas.length,
+                      itemCount: listaClinicas[0].contains(",")
+                          ? listaClinicas.length
+                          : 0,
                       itemBuilder: (value, index) {
                         return Padding(
                           padding: const EdgeInsets.all(5),
@@ -81,8 +83,21 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
+                              // IconButton(
+                              //     onPressed: () {}, icon: Icon(Icons.edit)),
                               IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.edit)),
+                                onPressed: () {
+                                  Clinica()
+                                      .removeClinica(
+                                          listaClinicas[index].split(",")[0])
+                                      .then((_) => {
+                                            Navigator.of(context)
+                                                .pushNamed(AppRoute.CLINICAS)
+                                          });
+                                },
+                                icon: Icon(Icons.cancel),
+                                color: Colors.red.shade300,
+                              ),
                             ],
                           ),
                         );

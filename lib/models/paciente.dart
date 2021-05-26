@@ -3,41 +3,44 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class Paciente {
-  final String _uri =
-      'https://mobile-flutter-fb11c-default-rtdb.firebaseio.com/pacientes.json';
+  final String _baseUri =
+      'https://teste-fb614-default-rtdb.firebaseio.com/pacientes';
   final _client = http.Client();
   List<String> listaPaciente = [];
   final String? id;
   final String? nomePaciente;
   final String? clinica;
-  final String? convenioParticular;
   final String? valorConsulta;
   final String? dataAtendimento;
+  final String? atendido;
 
   Paciente(
       {this.id,
       this.nomePaciente,
       this.clinica,
-      this.convenioParticular,
       this.valorConsulta,
+      this.atendido,
       this.dataAtendimento});
 
   Future<List<String>> carregaPaciente() async {
     try {
       var paciente;
-      var response = await _client.get(Uri.parse(_uri));
-      Map<String, dynamic> data = json.decode(response.body);
-      data.forEach((idPaciente, pacienteData) {
-        paciente = {
-          idPaciente,
-          pacienteData['nomePaciente'],
-          pacienteData['clinica'],
-          // pacienteData['convenioParticular'],
-          pacienteData['valorConsulta'],
-          pacienteData['dataAtendimento'],
-        };
-        listaPaciente.add(paciente.toString());
-      });
+      var response = await _client.get(Uri.parse("$_baseUri.json"));
+
+      if (response.body != "null") {
+        Map<String, dynamic> data = json.decode(response.body);
+        data.forEach((idPaciente, pacienteData) {
+          paciente = {
+            idPaciente,
+            pacienteData['nomePaciente'],
+            pacienteData['clinica'],
+            pacienteData['atendido'],
+            pacienteData['valorConsulta'],
+            pacienteData['dataAtendimento'],
+          };
+          listaPaciente.add(paciente.toString());
+        });
+      }
 
       return listaPaciente;
     } finally {
@@ -47,15 +50,31 @@ class Paciente {
 
   Future<void> addPaciente() async {
     try {
-      var uriResponse = await _client.post(Uri.parse(_uri),
+      var uriResponse = await _client.post(Uri.parse("$_baseUri.json"),
           body: json.encode({
             'nomePaciente': this.nomePaciente,
             'clinica': this.clinica,
-            // 'convenioParticular': 'particular',
+            'atendido': 'false',
             'valorConsulta': this.valorConsulta,
             'dataAtendimento': this.dataAtendimento
           }));
       print(uriResponse);
+    } finally {
+      _client.close();
+    }
+  }
+
+  Future<void> removePaciente(id) async {
+    id = id.toString().replaceAll("[{", "");
+    try {
+      final http.Response response = await http.delete(
+        Uri.parse("$_baseUri/$id.json"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      print(response);
     } finally {
       _client.close();
     }

@@ -1,3 +1,4 @@
+import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/models/home_page_icons.dart';
 import 'package:agenda/models/paciente.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +50,6 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
             );
           listaPacientes = snapshot.data.toString().split("}, {");
 
-          print(listaPacientes);
-
           return Scaffold(
             appBar: appBar,
             body: Column(
@@ -62,7 +61,9 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                   width: double.infinity,
                   padding: EdgeInsets.all(10),
                   child: ListView.builder(
-                    itemCount: listaPacientes.length,
+                    itemCount: listaPacientes[0].contains(",")
+                        ? listaPacientes.length
+                        : 0,
                     itemBuilder: (ctx, index) {
                       return Padding(
                         padding: const EdgeInsets.all(5),
@@ -100,6 +101,19 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                   listaPacientes[index].split(",")[1],
                                 ),
                               ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Paciente()
+                                    .removePaciente(
+                                        listaPacientes[index].split(",")[0])
+                                    .then((_) => {
+                                          Navigator.of(context)
+                                              .pushNamed(AppRoute.AGENDA_DIARIA)
+                                        });
+                              },
+                              icon: Icon(Icons.cancel),
+                              color: Colors.red.shade300,
                             ),
                             Buttons(
                               icon: Icons.cancel,

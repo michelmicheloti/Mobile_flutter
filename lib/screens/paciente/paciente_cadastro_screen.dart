@@ -9,8 +9,6 @@ import 'package:intl/intl.dart';
 class PacienteCadastroScreen extends StatelessWidget {
   final TextEditingController _controladorNomePaciente =
       TextEditingController();
-  final TextEditingController _controladorConvenioParticular =
-      TextEditingController();
   final TextEditingController _controladorValorConsulta =
       TextEditingController();
   final TextEditingController _controladorDataAtendimento =
@@ -30,7 +28,6 @@ class PacienteCadastroScreen extends StatelessWidget {
       Paciente(
         nomePaciente: _controladorNomePaciente.text,
         clinica: globals.valueDropClinica,
-        convenioParticular: _controladorConvenioParticular.text,
         valorConsulta: _controladorValorConsulta.text,
         dataAtendimento: _controladorDataAtendimento.text,
       )

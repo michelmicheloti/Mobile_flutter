@@ -62,20 +62,18 @@ class _PacientesScreenState extends State<PacientesScreen> {
             body: Center(
               child: Column(
                 children: [
-                  Container(
-                    width: mediaQuery.size.width * 0.98,
-                    child: DropDown(),
-                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
-                        height: availabelHeight * 0.8,
+                        height: availabelHeight * 0.7,
                         width: double.infinity,
                         padding: EdgeInsets.all(10),
                         child: ListView.builder(
-                          itemCount: listaPacientes.length,
+                          itemCount: listaPacientes[0].contains(",")
+                              ? listaPacientes.length
+                              : 0,
                           itemBuilder: (ctx, index) {
                             return Padding(
                               padding: const EdgeInsets.all(5),
