@@ -1,5 +1,8 @@
+
 class AppRoute {
-  static const HOME = '/';
+  // static const AUTH = '/';
+  static const AUTH_HOME = '/';
+  static const HOME = '/home';
   static const AGENDA_DIARIA = '/agendaDiaria';
   static const PACIENTES = '/pacientes';
   static const PACIENTES_CADASTRO = '/pacientesCadastro';
