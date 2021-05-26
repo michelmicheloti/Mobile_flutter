@@ -144,29 +144,32 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                     )),
                               ),
                             ),
-                            Material(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              child: InkWell(
-                                splashColor: Theme.of(context).primaryColor,
+                            if (listaPacientes[index]
+                                .split(",")[3]
+                                .contains("false"))
+                              Material(
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
-                                onTap: () {
-                                  Paciente()
-                                      .updateStatusAtendimento(
-                                          listaPacientes[index].split(",")[0])
-                                      .then((_) => {
-                                            Navigator.of(context).pushNamed(
-                                                AppRoute.AGENDA_DIARIA)
-                                          });
-                                },
-                                child: Container(
-                                    padding: EdgeInsets.all(12),
-                                    child: Icon(
-                                      Icons.check_circle,
-                                      color: Colors.green.shade300,
-                                    )),
+                                child: InkWell(
+                                  splashColor: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(15),
+                                  onTap: () {
+                                    Paciente()
+                                        .updateStatusAtendimento(
+                                            listaPacientes[index].split(",")[0])
+                                        .then((_) => {
+                                              Navigator.of(context).pushNamed(
+                                                  AppRoute.AGENDA_DIARIA)
+                                            });
+                                  },
+                                  child: Container(
+                                      padding: EdgeInsets.all(12),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green.shade300,
+                                      )),
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       );

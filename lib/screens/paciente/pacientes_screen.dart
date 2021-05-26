@@ -92,18 +92,30 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      Paciente()
-                                          .removePaciente(listaPacientes[index]
-                                              .split(",")[0])
-                                          .then((_) => {
-                                                Navigator.of(context).pushNamed(
-                                                    AppRoute.PACIENTES)
-                                              });
-                                    },
-                                    icon: Icon(Icons.cancel),
-                                    color: Colors.red.shade300,
+                                  Material(
+                                    color: Colors.white,
+                                    child: InkWell(
+                                      splashColor:
+                                          Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      onTap: () {
+                                        Paciente()
+                                            .removePaciente(
+                                                listaPacientes[index]
+                                                    .split(",")[0])
+                                            .then((_) => {
+                                                  Navigator.of(context)
+                                                      .pushNamed(
+                                                          AppRoute.PACIENTES)
+                                                });
+                                      },
+                                      child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          child: Icon(
+                                            Icons.cancel,
+                                            color: Colors.red.shade300,
+                                          )),
+                                    ),
                                   ),
                                 ],
                               ),
