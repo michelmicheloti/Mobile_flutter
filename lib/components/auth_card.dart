@@ -1,4 +1,4 @@
-import 'package:agenda/components/exceptions/auth_exception.dart';
+import 'package:agenda/exceptions/auth_exception.dart';
 import 'package:agenda/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -120,7 +120,7 @@ class _AuthCardState extends State<AuthCard> {
                 controller: _passwordController,
                 obscureText: true,
                 validator: (value) {
-                  if (value!.isEmpty || value.length < 5) {
+                  if (value!.isEmpty || value.length < 3) {
                     return "Informe uma senha válida!";
                   }
                   return null;

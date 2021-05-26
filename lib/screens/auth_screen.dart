@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:agenda/components/auth_card.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:agenda/components/exceptions/auth_exception.dart';
+import 'package:agenda/exceptions/auth_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
