@@ -46,34 +46,34 @@ class HomeDrawer extends StatelessWidget {
               AppRoute.HOME,
             ),
           ),
-          Divider(),
-          _createItem(
-            'Agenda Diária',
-            () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.HOME,
-            ),
-          ),
-          Divider(),
-          _createItem(
-            'Clínicas',
-            () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.HOME,
-            ),
-          ),
-          Divider(),
-          _createItem(
-            'Pacientes',
-            () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.HOME,
-            ),
-          ),
-          Divider(),
-          _createItem(
-            'Rendimentos',
-            () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.HOME,
-            ),
-          ),
+          // Divider(),
+          // _createItem(
+          //   'Agenda Diária',
+          //   () => Navigator.of(context).pushReplacementNamed(
+          //     AppRoute.HOME,
+          //   ),
+          // ),
+          // Divider(),
+          // _createItem(
+          //   'Clínicas',
+          //   () => Navigator.of(context).pushReplacementNamed(
+          //     AppRoute.HOME,
+          //   ),
+          // ),
+          // Divider(),
+          // _createItem(
+          //   'Pacientes',
+          //   () => Navigator.of(context).pushReplacementNamed(
+          //     AppRoute.HOME,
+          //   ),
+          // ),
+          // Divider(),
+          // _createItem(
+          //   'Rendimentos',
+          //   () => Navigator.of(context).pushReplacementNamed(
+          //     AppRoute.HOME,
+          //   ),
+          // ),
           Divider(),
           ListTile(
             // leading: Icon(Icons.exit_to_app),
