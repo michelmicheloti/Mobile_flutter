@@ -1,4 +1,4 @@
-import 'package:agenda/models/clinica.dart';
+import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda/Utils/globals.dart' as globals;
 

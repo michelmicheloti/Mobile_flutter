@@ -1,7 +1,7 @@
 import 'package:agenda/components/dropdown.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/components/text_with_textinput.dart';
-import 'package:agenda/models/home_page_icons.dart';
+import 'package:agenda/providers/home_page_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

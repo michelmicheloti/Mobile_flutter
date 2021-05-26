@@ -1,6 +1,6 @@
 import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
-import 'package:agenda/models/clinica.dart';
+import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
 
 class ClinicaCadastroScreen extends StatefulWidget {

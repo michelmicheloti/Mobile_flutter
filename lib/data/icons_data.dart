@@ -1,4 +1,4 @@
-import 'package:agenda/models/home_page_icons.dart';
+import 'package:agenda/providers/home_page_icons.dart';
 
 const ICONS_DATA = const [
   HomePageIcons(

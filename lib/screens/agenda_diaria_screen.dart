@@ -1,6 +1,6 @@
 import 'package:agenda/Utils/app_routs.dart';
-import 'package:agenda/models/home_page_icons.dart';
-import 'package:agenda/models/paciente.dart';
+import 'package:agenda/providers/home_page_icons.dart';
+import 'package:agenda/providers/paciente.dart';
 import 'package:flutter/material.dart';
 
 class AgendaDiariaScreen extends StatefulWidget {

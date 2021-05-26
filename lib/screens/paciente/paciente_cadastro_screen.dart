@@ -2,7 +2,7 @@ import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/dropdown.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/Utils/globals.dart' as globals;
-import 'package:agenda/models/paciente.dart';
+import 'package:agenda/providers/paciente.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
