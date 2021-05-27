@@ -39,13 +39,13 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          Divider(),
-          _createItem(
-            'Home',
-            () => Navigator.of(context).pushReplacementNamed(
-              AppRoute.HOME,
-            ),
-          ),
+          // Divider(),
+          // _createItem(
+          //   'Home',
+          //   () => Navigator.of(context).pushReplacementNamed(
+          //     AppRoute.HOME,
+          //   ),
+          // ),
           // Divider(),
           // _createItem(
           //   'Agenda Diária',

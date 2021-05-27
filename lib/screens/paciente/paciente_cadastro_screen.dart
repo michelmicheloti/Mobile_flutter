@@ -31,10 +31,12 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
       List<String> lista = globals.listaPacientes.toString().split(",");
       id = lista[0].replaceAll("[[{", "");
       data = lista[5].replaceAll("}", "");
-      _controladorNomePaciente = new TextEditingController(text: lista[1]);
-      _controladorValorConsulta = new TextEditingController(text: lista[4]);
+      _controladorNomePaciente =
+          new TextEditingController(text: lista[1].trimLeft());
+      _controladorValorConsulta =
+          new TextEditingController(text: lista[4].trimLeft());
       _controladorDataAtendimento =
-          new TextEditingController(text: data.replaceAll("]", ""));
+          new TextEditingController(text: data.replaceAll("]", "").trimLeft());
     }
 
     void _saveItem() {
