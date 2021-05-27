@@ -80,4 +80,24 @@ class Clinica {
       _client.close();
     }
   }
+
+  Future<void> update(id) async {
+    id = id.toString().replaceAll("[", "");
+    try {
+      final http.Response response = await http.patch(
+        Uri.parse("$_baseUri/$id.json"),
+        body: json.encode({
+          'nomeClinica': this.nomeClinica,
+          'inicioAtentimentos': this.inicioAtentimentos,
+          'fimAtentimentos': this.fimAtentimentos,
+          'minutosAtentimentos': this.minutosAtentimentos,
+          'valor': this.valor
+        }),
+      );
+
+      print(response);
+    } finally {
+      _client.close();
+    }
+  }
 }

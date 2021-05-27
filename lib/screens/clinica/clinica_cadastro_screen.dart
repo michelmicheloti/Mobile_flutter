@@ -2,6 +2,7 @@ import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
+import 'package:agenda/Utils/globals.dart' as globals;
 
 class ClinicaCadastroScreen extends StatefulWidget {
   @override
@@ -9,15 +10,34 @@ class ClinicaCadastroScreen extends StatefulWidget {
 }
 
 class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
-  final TextEditingController _controladorInicioAtentimentos =
+  String id = "";
+  String valor = "";
+  TextEditingController _controladorInicioAtentimentos =
       TextEditingController();
-  final TextEditingController _controladorFimAtentimentos =
+  TextEditingController _controladorFimAtentimentos = TextEditingController();
+  TextEditingController _controladorMinutosAtentimentos =
       TextEditingController();
-  final TextEditingController _controladorMinutosAtentimentos =
-      TextEditingController();
-  final TextEditingController _controladorValor = TextEditingController();
-  final TextEditingController _controladorNomeClinica = TextEditingController();
+  TextEditingController _controladorValor = TextEditingController();
+  TextEditingController _controladorNomeClinica = TextEditingController();
   // final TextEditingController _controladorDiaSemana = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (globals.updateClinica) {
+      List<String> lista = globals.listaClinicas.toString().split(",");
+      id = lista[0].replaceAll("[[{", "");
+      valor = lista[5].replaceAll("}", "");
+      _controladorNomeClinica = new TextEditingController(text: lista[1]);
+      _controladorInicioAtentimentos =
+          new TextEditingController(text: lista[2]);
+      _controladorFimAtentimentos = new TextEditingController(text: lista[3]);
+      _controladorMinutosAtentimentos =
+          new TextEditingController(text: lista[4]);
+      _controladorValor =
+          new TextEditingController(text: valor.replaceAll("]", ""));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +50,27 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
     );
 
     void _saveItem() {
-      Clinica(
-        nomeClinica: _controladorNomeClinica.text,
-        inicioAtentimentos: _controladorInicioAtentimentos.text,
-        fimAtentimentos: _controladorFimAtentimentos.text,
-        minutosAtentimentos: _controladorMinutosAtentimentos.text,
-        valor: _controladorValor.text,
-        // diaSemana: _controladorDiaSemana.text
-      ).addClinica().then((_) =>
-          {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
+      if (id.isEmpty) {
+        Clinica(
+          nomeClinica: _controladorNomeClinica.text,
+          inicioAtentimentos: _controladorInicioAtentimentos.text,
+          fimAtentimentos: _controladorFimAtentimentos.text,
+          minutosAtentimentos: _controladorMinutosAtentimentos.text,
+          valor: _controladorValor.text,
+          // diaSemana: _controladorDiaSemana.text
+        ).addClinica().then((_) =>
+            {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
+      } else {
+        Clinica(
+          nomeClinica: _controladorNomeClinica.text,
+          inicioAtentimentos: _controladorInicioAtentimentos.text,
+          fimAtentimentos: _controladorFimAtentimentos.text,
+          minutosAtentimentos: _controladorMinutosAtentimentos.text,
+          valor: _controladorValor.text,
+          // diaSemana: _controladorDiaSemana.text
+        ).update(id).then((_) =>
+            {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
+      }
     }
 
     final availabelHeight = mediaQuery.size.height -

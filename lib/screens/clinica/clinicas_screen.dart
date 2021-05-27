@@ -1,6 +1,7 @@
 import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
+import 'package:agenda/Utils/globals.dart' as globals;
 
 class ClinicasScreen extends StatefulWidget {
   @override
@@ -15,6 +16,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
   @override
   void initState() {
     clinicas = Clinica().carregaClinica();
+    globals.updateClinica = false;
+    globals.listaClinicas.clear();
     super.initState();
   }
 
@@ -38,8 +41,6 @@ class _ClinicasScreen extends State<ClinicasScreen> {
               child: CircularProgressIndicator(),
             );
           listaClinicas = snapshot.data.toString().split("}, {");
-
-          print(listaClinicas);
 
           return Scaffold(
             appBar: AppBar(
@@ -74,7 +75,7 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                width: 300,
+                                width: 250,
                                 padding: EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -85,21 +86,50 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                              // IconButton(
-                              //     onPressed: () {}, icon: Icon(Icons.edit)),
-                              IconButton(
-                                onPressed: () {
-                                  Clinica()
-                                      .removeClinica(
-                                          listaClinicas[index].split(",")[0])
-                                      .then((_) => {
-                                            Navigator.of(context)
-                                                .pushReplacementNamed(
-                                                    AppRoute.CLINICAS)
-                                          });
-                                },
-                                icon: Icon(Icons.cancel),
-                                color: Colors.red.shade300,
+                              Material(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                child: InkWell(
+                                  splashColor: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(15),
+                                  onTap: () {
+                                    Clinica()
+                                        .removeClinica(
+                                            listaClinicas[index].split(",")[0])
+                                        .then((_) => {
+                                              Navigator.of(context)
+                                                  .pushReplacementNamed(
+                                                      AppRoute.CLINICAS)
+                                            });
+                                  },
+                                  child: Container(
+                                      padding: EdgeInsets.all(12),
+                                      child: Icon(
+                                        Icons.cancel,
+                                        color: Colors.red.shade300,
+                                      )),
+                                ),
+                              ),
+                              Material(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                child: InkWell(
+                                  splashColor: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(15),
+                                  onTap: () {
+                                    globals.listaClinicas
+                                        .add(listaClinicas[index]);
+                                    globals.updateClinica = true;
+                                    Navigator.of(context).pushReplacementNamed(
+                                        AppRoute.CLINICAS_CADASTRO);
+                                  },
+                                  child: Container(
+                                      padding: EdgeInsets.all(12),
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.green.shade300,
+                                      )),
+                                ),
                               ),
                             ],
                           ),
@@ -111,8 +141,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () => Navigator.of(context)
-                  .pushReplacementNamed(AppRoute.CLINICAS_CADASTRO),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoute.CLINICAS_CADASTRO),
               backgroundColor: Colors.blue.shade500,
               child: Icon(
                 Icons.add,
