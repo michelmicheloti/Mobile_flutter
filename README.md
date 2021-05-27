@@ -1,7 +1,7 @@
 # CP110 - Desenvolvimento de Aplicações Mobile
 ## AC1 - Avaliação Continuada 1
 
-- Michel Micheloti							181003
+- Michel Micheloti		181003
 - Paola Rodrigues Lopes        	180115
 
 ### Agenda Para Psicólogo
@@ -11,5 +11,5 @@ Nosso projeto está sendo desenvolvido em Flutter, ele foi elaborado com o objet
 ### [Mockup](https://www.figma.com/proto/byqLRNwWAEgRcJRscGzJYY/Untitled?node-id=32%3A104&scaling=scale-down)
 
 <h4 align="center"> 
-	🚧  Flutter ... Em construção...  🚧
+	🚧  Flutter  🚧
 </h4>
