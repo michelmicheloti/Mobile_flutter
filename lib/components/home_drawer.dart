@@ -1,23 +1,22 @@
-import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeDrawer extends StatelessWidget {
-  Widget _createItem(String label, void Function() onTap) {
-    return ListTile(
-      title: Text(
-        label,
-        style: TextStyle(
-          fontFamily: 'RobotoCondensed',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      onTap: onTap,
-    );
-  }
+  // Widget _createItem(String label, void Function() onTap) {
+  //   return ListTile(
+  //     title: Text(
+  //       label,
+  //       style: TextStyle(
+  //         fontFamily: 'RobotoCondensed',
+  //         fontSize: 24,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //       textAlign: TextAlign.center,
+  //     ),
+  //     onTap: onTap,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
