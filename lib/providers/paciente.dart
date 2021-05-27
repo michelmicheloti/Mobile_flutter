@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:agenda/Utils/globals.dart' as globals;
 
 class Paciente {
   final String _baseUri =
@@ -26,6 +27,7 @@ class Paciente {
       var paciente;
       var response = await _client.get(Uri.parse("$_baseUri.json"));
 
+      globals.listaPacientes.clear();
       if (response.body != "null") {
         Map<String, dynamic> data = json.decode(response.body);
         data.forEach((idPaciente, pacienteData) {
@@ -37,6 +39,8 @@ class Paciente {
             pacienteData['valorConsulta'],
             pacienteData['dataAtendimento'],
           };
+
+          globals.listaPacientes.add(paciente.toString());
           listaPaciente.add(paciente.toString());
         });
       }
@@ -57,6 +61,8 @@ class Paciente {
             'valorConsulta': this.valorConsulta,
             'dataAtendimento': this.dataAtendimento
           }));
+
+      await carregaPaciente();
       print(uriResponse);
     } finally {
       _client.close();
@@ -72,7 +78,7 @@ class Paciente {
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
-
+      await carregaPaciente();
       print(response);
     } finally {
       _client.close();
@@ -88,7 +94,7 @@ class Paciente {
           'statusAtendimento': "true",
         }),
       );
-
+      await carregaPaciente();
       print(response);
     } finally {
       _client.close();
@@ -107,7 +113,7 @@ class Paciente {
           'dataAtendimento': this.dataAtendimento
         }),
       );
-
+      await carregaPaciente();
       print(response);
     } finally {
       _client.close();

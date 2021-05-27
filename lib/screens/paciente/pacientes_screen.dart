@@ -20,15 +20,10 @@ class _PacientesScreenState extends State<PacientesScreen> {
   void initState() {
     pacientes = Paciente().carregaPaciente();
     super.initState();
-    globals.updatePaciente = false;
-    globals.listaPacientes.clear();
   }
 
   @override
   Widget build(BuildContext context) {
-    // final homePageIcons =
-    //     ModalRoute.of(context)?.settings.arguments as HomePageIcons;
-
     final mediaQuery = MediaQuery.of(context);
 
     final PreferredSizeWidget appBar = AppBar(
@@ -47,7 +42,8 @@ class _PacientesScreenState extends State<PacientesScreen> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          listaPacientes = snapshot.data.toString().split("}, {");
+
+          listaPacientes = globals.listaPacientes.toString().split("}, {");
 
           return Scaffold(
             appBar: AppBar(
@@ -129,12 +125,12 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                           Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(15),
                                       onTap: () {
+                                        globals.listaPacientes.clear();
                                         globals.listaPacientes
                                             .add(listaPacientes[index]);
                                         globals.updatePaciente = true;
-                                        Navigator.of(context)
-                                            .pushReplacementNamed(
-                                                AppRoute.PACIENTES_CADASTRO);
+                                        Navigator.of(context).pushNamed(
+                                            AppRoute.PACIENTES_CADASTRO);
                                       },
                                       child: Container(
                                           padding: EdgeInsets.all(12),
@@ -156,8 +152,10 @@ class _PacientesScreenState extends State<PacientesScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO),
+              onPressed: () {
+                globals.updatePaciente = false;
+                Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO);
+              },
               backgroundColor: Colors.blue.shade500,
               child: Icon(
                 Icons.add,

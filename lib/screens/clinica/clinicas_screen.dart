@@ -16,8 +16,6 @@ class _ClinicasScreen extends State<ClinicasScreen> {
   @override
   void initState() {
     clinicas = Clinica().carregaClinica();
-    globals.updateClinica = false;
-    globals.listaClinicas.clear();
     super.initState();
   }
 
@@ -40,7 +38,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          listaClinicas = snapshot.data.toString().split("}, {");
+
+          listaClinicas = globals.listaClinicas.toString().split("}, {");
 
           return Scaffold(
             appBar: AppBar(
@@ -82,7 +81,9 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 child: Text(
-                                  listaClinicas[index].split(",")[1],
+                                  listaClinicas[index]
+                                      .split(",")[1]
+                                      .replaceAll("}]", ""),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -117,11 +118,12 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                   splashColor: Theme.of(context).primaryColor,
                                   borderRadius: BorderRadius.circular(15),
                                   onTap: () {
+                                    globals.listaClinicas.clear();
                                     globals.listaClinicas
                                         .add(listaClinicas[index]);
                                     globals.updateClinica = true;
-                                    Navigator.of(context).pushReplacementNamed(
-                                        AppRoute.CLINICAS_CADASTRO);
+                                    Navigator.of(context)
+                                        .pushNamed(AppRoute.CLINICAS_CADASTRO);
                                   },
                                   child: Container(
                                       padding: EdgeInsets.all(12),
@@ -141,8 +143,10 @@ class _ClinicasScreen extends State<ClinicasScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoute.CLINICAS_CADASTRO),
+              onPressed: () {
+                globals.updateClinica = false;
+                Navigator.of(context).pushNamed(AppRoute.CLINICAS_CADASTRO);
+              },
               backgroundColor: Colors.blue.shade500,
               child: Icon(
                 Icons.add,

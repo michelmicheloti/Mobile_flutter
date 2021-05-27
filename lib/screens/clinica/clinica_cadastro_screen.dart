@@ -1,4 +1,3 @@
-import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,6 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
       TextEditingController();
   TextEditingController _controladorValor = TextEditingController();
   TextEditingController _controladorNomeClinica = TextEditingController();
-  // final TextEditingController _controladorDiaSemana = TextEditingController();
 
   @override
   void initState() {
@@ -28,14 +26,16 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
       List<String> lista = globals.listaClinicas.toString().split(",");
       id = lista[0].replaceAll("[[{", "");
       valor = lista[5].replaceAll("}", "");
-      _controladorNomeClinica = new TextEditingController(text: lista[1]);
+      _controladorNomeClinica =
+          new TextEditingController(text: lista[1].trimLeft());
       _controladorInicioAtentimentos =
-          new TextEditingController(text: lista[2]);
-      _controladorFimAtentimentos = new TextEditingController(text: lista[3]);
+          new TextEditingController(text: lista[2].trimLeft());
+      _controladorFimAtentimentos =
+          new TextEditingController(text: lista[3].trimLeft());
       _controladorMinutosAtentimentos =
-          new TextEditingController(text: lista[4]);
+          new TextEditingController(text: lista[4].trimLeft());
       _controladorValor =
-          new TextEditingController(text: valor.replaceAll("]", ""));
+          new TextEditingController(text: valor.replaceAll("]", "").trimLeft());
     }
   }
 
@@ -57,9 +57,7 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
           fimAtentimentos: _controladorFimAtentimentos.text,
           minutosAtentimentos: _controladorMinutosAtentimentos.text,
           valor: _controladorValor.text,
-          // diaSemana: _controladorDiaSemana.text
-        ).addClinica().then((_) =>
-            {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
+        ).addClinica().then((_) => {Navigator.of(context).pop()});
       } else {
         Clinica(
           nomeClinica: _controladorNomeClinica.text,
@@ -67,9 +65,7 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
           fimAtentimentos: _controladorFimAtentimentos.text,
           minutosAtentimentos: _controladorMinutosAtentimentos.text,
           valor: _controladorValor.text,
-          // diaSemana: _controladorDiaSemana.text
-        ).update(id).then((_) =>
-            {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
+        ).update(id).then((_) => {Navigator.of(context).pop()});
       }
     }
 
@@ -148,29 +144,6 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                   ),
                   Column(
                     children: [
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Text(
-                      //       "Dias de Atendimento",
-                      //       style: TextStyle(
-                      //         fontSize: 18,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      //   children: [
-                      //     DiasDaSemana(text: "SEG"),
-                      //     DiasDaSemana(text: "TER"),
-                      //     DiasDaSemana(text: "QUA"),
-                      //     DiasDaSemana(text: "QUI"),
-                      //     DiasDaSemana(text: "SEX"),
-                      //     DiasDaSemana(text: "SAB"),
-                      //   ],
-                      // ),
                       Container(
                         width: mediaQuery.size.width * 0.9,
                         child: ElevatedButton(
