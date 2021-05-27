@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class Clinica {
   final String _baseUri =
-      'https://teste-fb614-default-rtdb.firebaseio.com/clinicas';
+      'https://flutter-mobile-3e560-default-rtdb.firebaseio.com/clinicas';
   final _client = http.Client();
   List<String> listaClinicas = [];
   final String? id;

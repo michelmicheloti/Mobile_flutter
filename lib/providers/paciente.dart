@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class Paciente {
   final String _baseUri =
-      'https://teste-fb614-default-rtdb.firebaseio.com/pacientes';
+      'https://flutter-mobile-3e560-default-rtdb.firebaseio.com/pacientes';
   final _client = http.Client();
   List<String> listaPaciente = [];
   final String? id;
@@ -86,6 +86,25 @@ class Paciente {
         Uri.parse("$_baseUri/$id.json"),
         body: json.encode({
           'statusAtendimento': "true",
+        }),
+      );
+
+      print(response);
+    } finally {
+      _client.close();
+    }
+  }
+
+  Future<void> update(id) async {
+    id = id.toString().replaceAll("[", "");
+    try {
+      final http.Response response = await http.patch(
+        Uri.parse("$_baseUri/$id.json"),
+        body: json.encode({
+          'nomePaciente': this.nomePaciente,
+          'clinica': this.clinica,
+          'valorConsulta': this.valorConsulta,
+          'dataAtendimento': this.dataAtendimento
         }),
       );
 

@@ -6,13 +6,17 @@ import 'package:agenda/providers/paciente.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class PacienteCadastroScreen extends StatelessWidget {
-  final TextEditingController _controladorNomePaciente =
-      TextEditingController();
-  final TextEditingController _controladorValorConsulta =
-      TextEditingController();
-  final TextEditingController _controladorDataAtendimento =
-      TextEditingController();
+class PacienteCadastroScreen extends StatefulWidget {
+  @override
+  _PacienteCadastroScreen createState() => _PacienteCadastroScreen();
+}
+
+class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
+  String id = "";
+  String data = "";
+  TextEditingController _controladorNomePaciente = TextEditingController();
+  TextEditingController _controladorValorConsulta = TextEditingController();
+  TextEditingController _controladorDataAtendimento = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +28,34 @@ class PacienteCadastroScreen extends StatelessWidget {
       title: Text(""),
     );
 
+    if (globals.updatePaciente) {
+      List<String> lista = globals.listaPacientes.toString().split(",");
+      id = lista[0].replaceAll("[[{", "");
+      data = lista[5].replaceAll("}", "");
+      _controladorNomePaciente = new TextEditingController(text: lista[1]);
+      _controladorValorConsulta = new TextEditingController(text: lista[4]);
+      _controladorDataAtendimento =
+          new TextEditingController(text: data.replaceAll("]", ""));
+    }
+
     void _saveItem() {
-      Paciente(
-        nomePaciente: _controladorNomePaciente.text,
-        clinica: globals.valueDropClinica,
-        valorConsulta: _controladorValorConsulta.text,
-        dataAtendimento: _controladorDataAtendimento.text,
-      ).addPaciente().then((_) =>
-          {Navigator.of(context).pushReplacementNamed(AppRoute.PACIENTES)});
+      if (id.isEmpty) {
+        Paciente(
+          nomePaciente: _controladorNomePaciente.text,
+          clinica: globals.valueDropClinica,
+          valorConsulta: _controladorValorConsulta.text,
+          dataAtendimento: _controladorDataAtendimento.text,
+        ).addPaciente().then((_) =>
+            {Navigator.of(context).pushReplacementNamed(AppRoute.PACIENTES)});
+      } else {
+        Paciente(
+          nomePaciente: _controladorNomePaciente.text,
+          clinica: globals.valueDropClinica,
+          valorConsulta: _controladorValorConsulta.text,
+          dataAtendimento: _controladorDataAtendimento.text,
+        ).update(id).then((_) =>
+            {Navigator.of(context).pushReplacementNamed(AppRoute.PACIENTES)});
+      }
     }
 
     final availabelHeight = mediaQuery.size.height -
@@ -71,21 +95,6 @@ class PacienteCadastroScreen extends StatelessWidget {
                 icon: Icon(Icons.person_outline_rounded),
               ),
               DropDown(),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //   children: [
-              //     Seletores(
-              //       widthTotal: widthTotal,
-              //       icon: Icon(Icons.crop_square, size: 40),
-              //       text: "Convênio",
-              //     ),
-              //     Seletores(
-              //       widthTotal: widthTotal,
-              //       icon: Icon(Icons.crop_square, size: 40),
-              //       text: "Particular",
-              //     ),
-              //   ],
-              // ),
               TextInput(
                 textController: _controladorValorConsulta,
                 widthTotal: widthTotal,
