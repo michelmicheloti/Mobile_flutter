@@ -1,6 +1,7 @@
 import 'package:agenda/Utils/app_routs.dart';
 import 'package:agenda/providers/paciente.dart';
 import 'package:flutter/material.dart';
+import 'package:agenda/Utils/globals.dart' as globals;
 
 class PacientesScreen extends StatefulWidget {
   const PacientesScreen({Key? key}) : super(key: key);
@@ -19,6 +20,8 @@ class _PacientesScreenState extends State<PacientesScreen> {
   void initState() {
     pacientes = Paciente().carregaPaciente();
     super.initState();
+    globals.updatePaciente = false;
+    globals.listaPacientes.clear();
   }
 
   @override
@@ -81,7 +84,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                    width: mediaQuery.size.width * 0.5,
+                                    width: 250,
                                     padding: EdgeInsets.all(15),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -94,6 +97,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                   ),
                                   Material(
                                     color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
                                     child: InkWell(
                                       splashColor:
                                           Theme.of(context).primaryColor,
@@ -114,6 +118,29 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                           child: Icon(
                                             Icons.cancel,
                                             color: Colors.red.shade300,
+                                          )),
+                                    ),
+                                  ),
+                                  Material(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: InkWell(
+                                      splashColor:
+                                          Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      onTap: () {
+                                        globals.listaPacientes
+                                            .add(listaPacientes[index]);
+                                        globals.updatePaciente = true;
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                AppRoute.PACIENTES_CADASTRO);
+                                      },
+                                      child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.green.shade300,
                                           )),
                                     ),
                                   ),

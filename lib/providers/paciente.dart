@@ -94,4 +94,23 @@ class Paciente {
       _client.close();
     }
   }
+
+  Future<void> update(id) async {
+    id = id.toString().replaceAll("[", "");
+    try {
+      final http.Response response = await http.patch(
+        Uri.parse("$_baseUri/$id.json"),
+        body: json.encode({
+          'nomePaciente': this.nomePaciente,
+          'clinica': this.clinica,
+          'valorConsulta': this.valorConsulta,
+          'dataAtendimento': this.dataAtendimento
+        }),
+      );
+
+      print(response);
+    } finally {
+      _client.close();
+    }
+  }
 }
