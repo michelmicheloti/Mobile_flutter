@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58750141410",
+    "firebase_url": "https://mobile-flutter-fb11c-default-rtdb.firebaseio.com",
+    "project_id": "mobile-flutter-fb11c",
+    "storage_bucket": "mobile-flutter-fb11c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58750141410:android:c57d37b8bf031084fc2fbb",
+        "android_client_info": {
+          "package_name": "br.com.facensmobile.agenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58750141410-0jrbtoqcsn348u9d9s0kopkl3iatqbvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAde8i63h5oE09IwzRcV4VffsEvd1q-LRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58750141410-0jrbtoqcsn348u9d9s0kopkl3iatqbvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
