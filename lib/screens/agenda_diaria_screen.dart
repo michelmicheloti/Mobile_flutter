@@ -132,8 +132,9 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                       .removePaciente(
                                           listaPacientes[index].split(",")[0])
                                       .then((_) => {
-                                            Navigator.of(context).pushNamed(
-                                                AppRoute.AGENDA_DIARIA)
+                                            Navigator.of(context)
+                                                .pushReplacementNamed(
+                                                    AppRoute.AGENDA_DIARIA)
                                           });
                                 },
                                 child: Container(
@@ -158,8 +159,9 @@ class _AgendaDiariaScreen extends State<AgendaDiariaScreen> {
                                         .updateStatusAtendimento(
                                             listaPacientes[index].split(",")[0])
                                         .then((_) => {
-                                              Navigator.of(context).pushNamed(
-                                                  AppRoute.AGENDA_DIARIA)
+                                              Navigator.of(context)
+                                                  .pushReplacementNamed(
+                                                      AppRoute.AGENDA_DIARIA)
                                             });
                                   },
                                   child: Container(

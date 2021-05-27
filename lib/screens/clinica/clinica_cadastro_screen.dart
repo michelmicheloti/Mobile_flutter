@@ -37,9 +37,8 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
         minutosAtentimentos: _controladorMinutosAtentimentos.text,
         valor: _controladorValor.text,
         // diaSemana: _controladorDiaSemana.text
-      )
-          .addClinica()
-          .then((_) => {Navigator.of(context).pushNamed(AppRoute.CLINICAS)});
+      ).addClinica().then((_) =>
+          {Navigator.of(context).pushReplacementNamed(AppRoute.CLINICAS)});
     }
 
     final availabelHeight = mediaQuery.size.height -

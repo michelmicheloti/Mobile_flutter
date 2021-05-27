@@ -105,7 +105,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                                     .split(",")[0])
                                             .then((_) => {
                                                   Navigator.of(context)
-                                                      .pushNamed(
+                                                      .pushReplacementNamed(
                                                           AppRoute.PACIENTES)
                                                 });
                                       },
@@ -129,8 +129,8 @@ class _PacientesScreenState extends State<PacientesScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO),
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoute.PACIENTES_CADASTRO),
               backgroundColor: Colors.blue.shade500,
               child: Icon(
                 Icons.add,

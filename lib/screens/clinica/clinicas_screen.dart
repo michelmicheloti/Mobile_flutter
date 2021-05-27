@@ -94,7 +94,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                           listaClinicas[index].split(",")[0])
                                       .then((_) => {
                                             Navigator.of(context)
-                                                .pushNamed(AppRoute.CLINICAS)
+                                                .pushReplacementNamed(
+                                                    AppRoute.CLINICAS)
                                           });
                                 },
                                 icon: Icon(Icons.cancel),
@@ -110,8 +111,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(AppRoute.CLINICAS_CADASTRO),
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoute.CLINICAS_CADASTRO),
               backgroundColor: Colors.blue.shade500,
               child: Icon(
                 Icons.add,

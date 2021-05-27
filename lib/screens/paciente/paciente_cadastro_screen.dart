@@ -30,9 +30,8 @@ class PacienteCadastroScreen extends StatelessWidget {
         clinica: globals.valueDropClinica,
         valorConsulta: _controladorValorConsulta.text,
         dataAtendimento: _controladorDataAtendimento.text,
-      )
-          .addPaciente()
-          .then((_) => {Navigator.of(context).pushNamed(AppRoute.PACIENTES)});
+      ).addPaciente().then((_) =>
+          {Navigator.of(context).pushReplacementNamed(AppRoute.PACIENTES)});
     }
 
     final availabelHeight = mediaQuery.size.height -
