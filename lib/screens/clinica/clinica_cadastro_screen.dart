@@ -1,3 +1,5 @@
+import 'package:agenda/components/data_time/date_picker_widget.dart';
+import 'package:agenda/components/data_time/time_picker_widget.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/providers/clinica.dart';
 import 'package:flutter/material.dart';
@@ -107,33 +109,42 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                     widthTotal: widthTotal,
                     textInputType: TextInputType.text,
                     labelText: "Nome da Clínica",
-                    hint: "Clinica Tal",
+                    hint: "Clínica",
                     icon: Icon(Icons.text_fields),
                   ),
-                  TextInput(
-                    textController: _controladorInicioAtentimentos,
-                    widthTotal: widthTotal,
-                    textInputType: TextInputType.datetime,
-                    labelText: "Início dos Atendimentos",
-                    hint: "dd/mm/yyyy",
-                    icon: Icon(Icons.calendar_today),
+                  DatePickerWidget(
+                    valueButton: 'Selecione uma Data',
+                    textUpButton: 'Início dos Atendimentos',
                   ),
-                  TextInput(
-                    textController: _controladorFimAtentimentos,
-                    widthTotal: widthTotal,
-                    textInputType: TextInputType.datetime,
-                    labelText: "Fim dos Atendimentos",
-                    hint: "dd/mm/yyyy",
-                    icon: Icon(Icons.calendar_today),
+                  DatePickerWidget(
+                    valueButton: 'Selecione uma Data',
+                    textUpButton: 'Fim dos Atendimentos',
                   ),
-                  TextInput(
-                    textController: _controladorMinutosAtentimentos,
-                    widthTotal: widthTotal,
-                    textInputType: TextInputType.datetime,
-                    labelText: "Minutos de Atendimentos",
-                    hint: "00:30",
-                    icon: Icon(Icons.access_time),
-                  ),
+                  TimePickerWidget(),
+                  // TextInput(
+                  //   textController: _controladorInicioAtentimentos,
+                  //   widthTotal: widthTotal,
+                  //   textInputType: TextInputType.datetime,
+                  //   labelText: "Início dos Atendimentos",
+                  //   hint: "dd/mm/yyyy",
+                  //   icon: Icon(Icons.calendar_today),
+                  // ),
+                  // TextInput(
+                  //   textController: _controladorFimAtentimentos,
+                  //   widthTotal: widthTotal,
+                  //   textInputType: TextInputType.datetime,
+                  //   labelText: "Fim dos Atendimentos",
+                  //   hint: "dd/mm/yyyy",
+                  //   icon: Icon(Icons.calendar_today),
+                  // ),
+                  // TextInput(
+                  //   textController: _controladorMinutosAtentimentos,
+                  //   widthTotal: widthTotal,
+                  //   textInputType: TextInputType.datetime,
+                  //   labelText: "Minutos de Atendimentos",
+                  //   hint: "00:30",
+                  //   icon: Icon(Icons.access_time),
+                  // ),
                   TextInput(
                     textController: _controladorValor,
                     widthTotal: widthTotal,

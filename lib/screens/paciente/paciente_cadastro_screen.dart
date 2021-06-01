@@ -1,9 +1,9 @@
+import 'package:agenda/components/data_time/date_picker_widget.dart';
 import 'package:agenda/components/dropdown.dart';
 import 'package:agenda/components/text_input.dart';
 import 'package:agenda/Utils/globals.dart' as globals;
 import 'package:agenda/providers/paciente.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class PacienteCadastroScreen extends StatefulWidget {
   @override
@@ -102,14 +102,18 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
                 hint: "R\$50,00",
                 icon: Icon(Icons.monetization_on_outlined),
               ),
-              TextInput(
-                textController: _controladorDataAtendimento,
-                widthTotal: widthTotal,
-                textInputType: TextInputType.datetime,
-                icon: Icon(Icons.calendar_today),
-                labelText: "Data de Atendimento",
-                hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+              DatePickerWidget(
+                valueButton: 'Selecione uma Data',
+                textUpButton: 'Data do Atendimento',
               ),
+              // TextInput(
+              //   textController: _controladorDataAtendimento,
+              //   widthTotal: widthTotal,
+              //   textInputType: TextInputType.datetime,
+              //   icon: Icon(Icons.calendar_today),
+              //   labelText: "Data de Atendimento",
+              //   hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+              // ),
               Container(
                 width: mediaQuery.size.width * 0.9,
                 child: ElevatedButton(

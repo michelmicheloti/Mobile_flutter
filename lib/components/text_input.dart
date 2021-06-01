@@ -18,6 +18,7 @@ class TextInput extends StatelessWidget {
   final Icon? icon;
   final TextEditingController? textController;
 
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,6 +44,7 @@ class TextInput extends StatelessWidget {
               border: InputBorder.none,
             ),
           ),
+          
         ),
       ],
     );
