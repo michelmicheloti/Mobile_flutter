@@ -17,6 +17,8 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
   TextEditingController _controladorValorConsulta = TextEditingController();
   TextEditingController _controladorDataAtendimento = TextEditingController();
 
+  GlobalKey<FormState> _form = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
@@ -77,70 +79,75 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          height: availabelHeight * 1,
-          padding: EdgeInsets.symmetric(
-            vertical: 16,
-            horizontal: 8,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextInput(
-                textController: _controladorNomePaciente,
-                widthTotal: widthTotal,
-                textInputType: TextInputType.text,
-                labelText: "Nome do paciente",
-                icon: Icon(Icons.person_outline_rounded),
-              ),
-              DropDown(),
-              TextInput(
-                textController: _controladorValorConsulta,
-                widthTotal: widthTotal,
-                textInputType: TextInputType.number,
-                labelText: "Valor da Consulta",
-                hint: "R\$50,00",
-                icon: Icon(Icons.monetization_on_outlined),
-              ),
-              DatePickerWidget(
-                valueButton: 'Selecione uma Data',
-                textUpButton: 'Data do Atendimento',
-              ),
-              // TextInput(
-              //   textController: _controladorDataAtendimento,
-              //   widthTotal: widthTotal,
-              //   textInputType: TextInputType.datetime,
-              //   icon: Icon(Icons.calendar_today),
-              //   labelText: "Data de Atendimento",
-              //   hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
-              // ),
-              Container(
-                width: mediaQuery.size.width * 0.9,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _saveItem();
-                  },
-                  child: Text(
-                    "Salvar",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.green.shade300,
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+        child: Form(
+          key: _form,
+          child: Container(
+            height: availabelHeight * 1,
+            padding: EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 8,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextInput(
+                  textController: _controladorNomePaciente,
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.text,
+                  labelText: "Nome do paciente",
+                  icon: Icon(Icons.person_outline_rounded),
+                ),
+                DropDown(),
+                TextInput(
+                  textController: _controladorValorConsulta,
+                  widthTotal: widthTotal,
+                  textInputType: TextInputType.number,
+                  labelText: "Valor da Consulta",
+                  hint: "R\$50,00",
+                  icon: Icon(Icons.monetization_on_outlined),
+                ),
+                DatePickerWidget(
+                  valueButton: 'Selecione uma Data',
+                  textUpButton: 'Data do Atendimento',
+                ),
+                // TextInput(
+                //   textController: _controladorDataAtendimento,
+                //   widthTotal: widthTotal,
+                //   textInputType: TextInputType.datetime,
+                //   icon: Icon(Icons.calendar_today),
+                //   labelText: "Data de Atendimento",
+                //   hint: "${DateFormat('dd/MM/y').format(DateTime.now())}",
+                // ),
+                Container(
+                  width: mediaQuery.size.width * 0.9,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_form.currentState!.validate()) {
+                        _saveItem();
+                      }
+                    },
+                    child: Text(
+                      "Salvar",
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
                     ),
-                    elevation: MaterialStateProperty.all<double>(5),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(12)),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green.shade300,
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                      elevation: MaterialStateProperty.all<double>(5),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(12)),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -21,6 +21,8 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
   TextEditingController _controladorValor = TextEditingController();
   TextEditingController _controladorNomeClinica = TextEditingController();
 
+  GlobalKey<FormState> _form = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -92,6 +94,7 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: _form,
           child: Container(
             height: availabelHeight * 1,
             width: double.infinity,
@@ -121,30 +124,6 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                     textUpButton: 'Fim dos Atendimentos',
                   ),
                   TimePickerWidget(),
-                  // TextInput(
-                  //   textController: _controladorInicioAtentimentos,
-                  //   widthTotal: widthTotal,
-                  //   textInputType: TextInputType.datetime,
-                  //   labelText: "Início dos Atendimentos",
-                  //   hint: "dd/mm/yyyy",
-                  //   icon: Icon(Icons.calendar_today),
-                  // ),
-                  // TextInput(
-                  //   textController: _controladorFimAtentimentos,
-                  //   widthTotal: widthTotal,
-                  //   textInputType: TextInputType.datetime,
-                  //   labelText: "Fim dos Atendimentos",
-                  //   hint: "dd/mm/yyyy",
-                  //   icon: Icon(Icons.calendar_today),
-                  // ),
-                  // TextInput(
-                  //   textController: _controladorMinutosAtentimentos,
-                  //   widthTotal: widthTotal,
-                  //   textInputType: TextInputType.datetime,
-                  //   labelText: "Minutos de Atendimentos",
-                  //   hint: "00:30",
-                  //   icon: Icon(Icons.access_time),
-                  // ),
                   TextInput(
                     textController: _controladorValor,
                     widthTotal: widthTotal,
@@ -159,7 +138,9 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                         width: mediaQuery.size.width * 0.9,
                         child: ElevatedButton(
                           onPressed: () {
-                            _saveItem();
+                            if (_form.currentState!.validate()) {
+                              _saveItem();
+                            }
                           },
                           child: Text(
                             "Salvar",
@@ -186,6 +167,30 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                     ],
                   ),
                 ],
+                // TextInput(
+                //   textController: _controladorInicioAtentimentos,
+                //   widthTotal: widthTotal,
+                //   textInputType: TextInputType.datetime,
+                //   labelText: "Início dos Atendimentos",
+                //   hint: "dd/mm/yyyy",
+                //   icon: Icon(Icons.calendar_today),
+                // ),
+                // TextInput(
+                //   textController: _controladorFimAtentimentos,
+                //   widthTotal: widthTotal,
+                //   textInputType: TextInputType.datetime,
+                //   labelText: "Fim dos Atendimentos",
+                //   hint: "dd/mm/yyyy",
+                //   icon: Icon(Icons.calendar_today),
+                // ),
+                // TextInput(
+                //   textController: _controladorMinutosAtentimentos,
+                //   widthTotal: widthTotal,
+                //   textInputType: TextInputType.datetime,
+                //   labelText: "Minutos de Atendimentos",
+                //   hint: "00:30",
+                //   icon: Icon(Icons.access_time),
+                // ),
               ),
             ),
           ),

@@ -18,7 +18,6 @@ class TextInput extends StatelessWidget {
   final Icon? icon;
   final TextEditingController? textController;
 
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,7 +30,7 @@ class TextInput extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
           ),
-          child: TextField(
+          child: TextFormField(
             style: TextStyle(
               fontSize: 20,
             ),
@@ -43,8 +42,15 @@ class TextInput extends StatelessWidget {
               suffixIcon: icon,
               border: InputBorder.none,
             ),
+            validator: (value) {
+              if (value!.isEmpty ) {
+                return "Campo não pode ser vazio";
+              }else if (value.length < 5){
+                return "Minimo de 5 caracteres";
+              }
+              return null;
+            },
           ),
-          
         ),
       ],
     );
