@@ -39,7 +39,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     final newDate = await showDatePicker(
       context: context,
       initialDate: date ?? initialDate,
-      firstDate: DateTime.now(),
+      firstDate: DateTime(DateTime.now().year - 1),
       lastDate: DateTime(DateTime.now().year + 5),
     );
 
