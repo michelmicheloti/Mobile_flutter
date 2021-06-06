@@ -129,6 +129,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
                                         globals.listaPacientes
                                             .add(listaPacientes[index]);
                                         globals.updatePaciente = true;
+                                        globals.update = true;
                                         Navigator.of(context).pushNamed(
                                             AppRoute.PACIENTES_CADASTRO);
                                       },
@@ -154,6 +155,7 @@ class _PacientesScreenState extends State<PacientesScreen> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 globals.updatePaciente = false;
+                globals.update = false;
                 Navigator.of(context).pushNamed(AppRoute.PACIENTES_CADASTRO);
               },
               backgroundColor: Colors.blue.shade500,

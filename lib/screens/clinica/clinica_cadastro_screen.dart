@@ -13,11 +13,7 @@ class ClinicaCadastroScreen extends StatefulWidget {
 class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
   String id = "";
   String valor = "";
-  TextEditingController _controladorInicioAtentimentos =
-      TextEditingController();
-  TextEditingController _controladorFimAtentimentos = TextEditingController();
-  TextEditingController _controladorMinutosAtentimentos =
-      TextEditingController();
+
   TextEditingController _controladorValor = TextEditingController();
   TextEditingController _controladorNomeClinica = TextEditingController();
 
@@ -28,18 +24,26 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
     super.initState();
     if (globals.updateClinica) {
       List<String> lista = globals.listaClinicas.toString().split(",");
+
+      String lDataInicial = lista[2].trimLeft();
+      List<String> listDataInicial = lDataInicial.split(" ");
+      lDataInicial = listDataInicial[0] + "T03:18:31.177769-04:00";
+      globals.dataInicial = DateTime.parse(lDataInicial);
+
+      String lDataFinal = lista[3].trimLeft();
+      List<String> listDataFinal = lDataFinal.split(" ");
+      lDataFinal = listDataFinal[0] + "T03:18:31.177769-04:00";
+      globals.dataFinal = DateTime.parse(lDataFinal);
+
       id = lista[0].replaceAll("[[{", "");
       valor = lista[5].replaceAll("}", "");
       _controladorNomeClinica =
           new TextEditingController(text: lista[1].trimLeft());
-      _controladorInicioAtentimentos =
-          new TextEditingController(text: lista[2].trimLeft());
-      _controladorFimAtentimentos =
-          new TextEditingController(text: lista[3].trimLeft());
-      _controladorMinutosAtentimentos =
-          new TextEditingController(text: lista[4].trimLeft());
       _controladorValor =
           new TextEditingController(text: valor.replaceAll("]", "").trimLeft());
+    } else {
+      globals.dataInicial = DateTime.now();
+      globals.dataFinal = DateTime.now();
     }
   }
 
@@ -57,17 +61,16 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
       if (id.isEmpty) {
         Clinica(
           nomeClinica: _controladorNomeClinica.text,
-          inicioAtentimentos: _controladorInicioAtentimentos.text,
-          fimAtentimentos: _controladorFimAtentimentos.text,
-          minutosAtentimentos: _controladorMinutosAtentimentos.text,
+          inicioAtentimentos: globals.dataInicial.toString(),
+          fimAtentimentos: globals.dataFinal.toString(),
+          minutosAtentimentos: '00:30',
           valor: _controladorValor.text,
         ).addClinica().then((_) => {Navigator.of(context).pop()});
       } else {
         Clinica(
           nomeClinica: _controladorNomeClinica.text,
-          inicioAtentimentos: _controladorInicioAtentimentos.text,
-          fimAtentimentos: _controladorFimAtentimentos.text,
-          minutosAtentimentos: _controladorMinutosAtentimentos.text,
+          inicioAtentimentos: globals.dataInicial.toString(),
+          fimAtentimentos: globals.dataFinal.toString(),
           valor: _controladorValor.text,
         ).update(id).then((_) => {Navigator.of(context).pop()});
       }
@@ -118,10 +121,14 @@ class _ClinicaCadastroScreenState extends State<ClinicaCadastroScreen> {
                   DatePickerWidget(
                     valueButton: 'Selecione uma Data',
                     textUpButton: 'Início dos Atendimentos',
+                    data: globals.dataInicial,
+                    typeDate: "dataInicial",
                   ),
                   DatePickerWidget(
                     valueButton: 'Selecione uma Data',
                     textUpButton: 'Fim dos Atendimentos',
+                    data: globals.dataFinal,
+                    typeDate: "dataFinal",
                   ),
                   TimePickerWidget(),
                   TextInput(

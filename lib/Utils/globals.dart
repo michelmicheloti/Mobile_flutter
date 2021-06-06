@@ -4,3 +4,8 @@ bool updateClinica = true;
 List<String> listaClinicas = [];
 bool updatePaciente = true;
 List<String> listaPacientes = [];
+DateTime? dataInicial;
+DateTime? dataFinal;
+DateTime? dataAtendimento;
+bool update = false;
+int count = 0;

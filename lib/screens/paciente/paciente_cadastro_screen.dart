@@ -15,7 +15,6 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
   String data = "";
   TextEditingController _controladorNomePaciente = TextEditingController();
   TextEditingController _controladorValorConsulta = TextEditingController();
-  TextEditingController _controladorDataAtendimento = TextEditingController();
 
   GlobalKey<FormState> _form = GlobalKey();
 
@@ -30,15 +29,23 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
     );
 
     if (globals.updatePaciente) {
+      globals.count = 0;
       List<String> lista = globals.listaPacientes.toString().split(",");
       id = lista[0].replaceAll("[[{", "");
       data = lista[5].replaceAll("}", "");
+      String lDataAtendimento = data.trimLeft();
+      List<String> listDataAtendimento = lDataAtendimento.split(" ");
+      lDataAtendimento = listDataAtendimento[0] + "T03:18:31.177769-04:00";
+      globals.dataAtendimento = DateTime.parse(lDataAtendimento);
       _controladorNomePaciente =
           new TextEditingController(text: lista[1].trimLeft());
       _controladorValorConsulta =
           new TextEditingController(text: lista[4].trimLeft());
-      _controladorDataAtendimento =
-          new TextEditingController(text: data.replaceAll("]", "").trimLeft());
+
+      // _controladorDataAtendimento =
+      //     new TextEditingController(text: data.replaceAll("]", "").trimLeft());
+    } else {
+      globals.dataAtendimento = DateTime.now();
     }
 
     void _saveItem() {
@@ -47,14 +54,14 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
           nomePaciente: _controladorNomePaciente.text,
           clinica: globals.valueDropClinica,
           valorConsulta: _controladorValorConsulta.text,
-          dataAtendimento: _controladorDataAtendimento.text,
+          dataAtendimento: globals.dataAtendimento.toString(),
         ).addPaciente().then((_) => {Navigator.of(context).pop()});
       } else {
         Paciente(
           nomePaciente: _controladorNomePaciente.text,
           clinica: globals.valueDropClinica,
           valorConsulta: _controladorValorConsulta.text,
-          dataAtendimento: _controladorDataAtendimento.text,
+          dataAtendimento: globals.dataAtendimento.toString(),
         ).update(id).then((_) => {Navigator.of(context).pop()});
       }
     }
@@ -109,6 +116,8 @@ class _PacienteCadastroScreen extends State<PacienteCadastroScreen> {
                 DatePickerWidget(
                   valueButton: 'Selecione uma Data',
                   textUpButton: 'Data do Atendimento',
+                  data: globals.dataAtendimento,
+                  typeDate: "dataAtendimento",
                 ),
                 // TextInput(
                 //   textController: _controladorDataAtendimento,

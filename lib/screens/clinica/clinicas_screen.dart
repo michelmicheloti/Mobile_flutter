@@ -122,6 +122,8 @@ class _ClinicasScreen extends State<ClinicasScreen> {
                                     globals.listaClinicas
                                         .add(listaClinicas[index]);
                                     globals.updateClinica = true;
+                                    globals.update = true;
+                                    globals.count = 0;
                                     Navigator.of(context)
                                         .pushNamed(AppRoute.CLINICAS_CADASTRO);
                                   },
@@ -145,6 +147,7 @@ class _ClinicasScreen extends State<ClinicasScreen> {
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 globals.updateClinica = false;
+                globals.update = false;
                 Navigator.of(context).pushNamed(AppRoute.CLINICAS_CADASTRO);
               },
               backgroundColor: Colors.blue.shade500,
